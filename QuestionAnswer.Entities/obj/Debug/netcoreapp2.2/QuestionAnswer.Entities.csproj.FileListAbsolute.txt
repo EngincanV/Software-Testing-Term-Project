@@ -1,0 +1,9 @@
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.deps.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.csprojAssemblyReference.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.csproj.CoreCompileInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.AssemblyInfoInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.AssemblyInfo.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Entities\obj\Debug\netcoreapp2.2\QuestionAnswer.Entities.pdb
