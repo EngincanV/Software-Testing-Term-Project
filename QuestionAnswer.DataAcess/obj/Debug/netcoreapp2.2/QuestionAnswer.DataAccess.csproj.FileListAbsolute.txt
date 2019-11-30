@@ -1,0 +1,12 @@
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\bin\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.deps.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\bin\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\bin\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.csprojAssemblyReference.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.AssemblyInfoInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.AssemblyInfo.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.csproj.CopyComplete
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.DataAcess\obj\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.pdb
