@@ -1,0 +1,14 @@
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.Business.deps.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.Business.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.Business.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.csprojAssemblyReference.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.csproj.CoreCompileInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.AssemblyInfoInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.AssemblyInfo.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.DataAccess.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\bin\Debug\netcoreapp2.2\QuestionAnswer.Entities.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Business\obj\Debug\netcoreapp2.2\QuestionAnswer.Business.csproj.CopyComplete

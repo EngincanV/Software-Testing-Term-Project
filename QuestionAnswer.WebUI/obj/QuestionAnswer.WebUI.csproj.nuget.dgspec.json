@@ -1,0 +1,247 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.WebUI\\QuestionAnswer.WebUI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\QuestionAnswer.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\QuestionAnswer.Business.csproj",
+        "projectName": "QuestionAnswer.Business",
+        "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\QuestionAnswer.Business.csproj",
+        "packagesPath": "C:\\Users\\engin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\engin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\QuestionAnswer.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\QuestionAnswer.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\QuestionAnswer.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\QuestionAnswer.DataAccess.csproj",
+        "projectName": "QuestionAnswer.DataAccess",
+        "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\QuestionAnswer.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\engin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.DataAcess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\engin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\QuestionAnswer.Entities.csproj": {
+                "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\QuestionAnswer.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\QuestionAnswer.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\QuestionAnswer.Entities.csproj",
+        "projectName": "QuestionAnswer.Entities",
+        "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\QuestionAnswer.Entities.csproj",
+        "packagesPath": "C:\\Users\\engin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\engin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.WebUI\\QuestionAnswer.WebUI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.WebUI\\QuestionAnswer.WebUI.csproj",
+        "projectName": "QuestionAnswer.WebUI",
+        "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.WebUI\\QuestionAnswer.WebUI.csproj",
+        "packagesPath": "C:\\Users\\engin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.WebUI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\engin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\QuestionAnswer.Business.csproj": {
+                "projectPath": "C:\\Users\\engin\\OneDrive\\Masaüstü\\QuestionAnswer\\QuestionAnswer.Business\\QuestionAnswer.Business.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
