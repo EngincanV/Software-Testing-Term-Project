@@ -6,5 +6,6 @@ namespace QuestionAnswer.Business.Abstract
     public interface IUserService
     {
         List<User> GetAll();
+        User UserExist(string userName, string password);
     }
 }

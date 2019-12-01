@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuestionAnswer.Business.Abstract;
+using QuestionAnswer.Business.Concrete;
+using QuestionAnswer.DataAccess.Abstract;
 using QuestionAnswer.DataAccess.Concrete.Entity_Framework;
 
 namespace QuestionAnswer.WebUI
@@ -36,6 +40,13 @@ namespace QuestionAnswer.WebUI
             services.AddDbContext<QuestionAnswerContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("QuestionAnswerContext")));
 
+            //my services
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserDal, UserDal>();
+
+            //add authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -56,6 +67,9 @@ namespace QuestionAnswer.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //use authentication
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

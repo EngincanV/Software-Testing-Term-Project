@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.WebUI.Models;
@@ -16,12 +17,10 @@ namespace QuestionAnswer.WebUI.Controllers
 
         public IActionResult Index()
         {
-            var userList = _service.GetAll();
-            ViewBag.user = userList;
-
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             return View();
