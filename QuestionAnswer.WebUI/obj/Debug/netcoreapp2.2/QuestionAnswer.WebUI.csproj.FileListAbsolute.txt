@@ -36,3 +36,5 @@ C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\bin\Debug
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\bin\Debug\netcoreapp2.2\QuestionAnswer.Business.pdb
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Question\Add.g.cshtml.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Test\Exam.g.cshtml.cs

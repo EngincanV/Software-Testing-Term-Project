@@ -9,7 +9,7 @@ using QuestionAnswer.DataAccess.Concrete.Entity_Framework;
 namespace QuestionAnswer.DataAccess.Migrations
 {
     [DbContext(typeof(QuestionAnswerContext))]
-    [Migration("20191130184811_Initializer1")]
+    [Migration("20191204093854_Initializer1")]
     partial class Initializer1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,9 +62,13 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.Property<string>("TrueContent")
                         .HasMaxLength(50);
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SubCategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -135,6 +139,11 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.HasOne("QuestionAnswer.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany("Questions")
                         .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QuestionAnswer.Entities.Concrete.User", "User")
+                        .WithMany("Questions")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

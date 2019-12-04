@@ -1,19 +1,19 @@
 ﻿@using System.Security.Claims
 @if ((User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Teacher") ||
-     (User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Student") ||
-     (User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin"))
+    (User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Student") ||
+    (User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin"))
 {
     <ul class="navbar nav">
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Çıkış Yap -  @User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value</a>
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Çıkış Yap -  @User.Identity.Name</a>
         </li>
     </ul>
 }
 else
 {
-<ul class="navbar nav">
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Giriş Yap</a>
-    </li>
-</ul>
+    <ul class="navbar nav">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+        </li>
+    </ul>
 }

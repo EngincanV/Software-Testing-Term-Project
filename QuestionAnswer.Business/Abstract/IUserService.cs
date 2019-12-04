@@ -7,5 +7,6 @@ namespace QuestionAnswer.Business.Abstract
     {
         List<User> GetAll();
         User UserExist(string userName, string password);
+        User FindUserByName(string userName);
     }
 }

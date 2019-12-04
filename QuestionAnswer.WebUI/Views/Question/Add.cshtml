@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+}
+@model QuestionAnswer.Entities.Concrete.Question
+    <div class="container jumbotron">
+        <h1 class="text-center">Soru Ekle</h1>
+        <hr/>
+        <form asp-action="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input asp-for="QuestionImage" type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Soru Resimi Seçiniz</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>A şıkkı :</label>
+                <input asp-for="FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
+            </div>
+            <div class="form-group">
+                <label>B şıkkı :</label>
+                <input asp-for="SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
+            </div>
+            <div class="form-group">
+                <label>C şıkkı :</label>
+                <input asp-for="ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
+            </div>
+            <div class="form-group">
+                <label>D şıkkı :</label>
+                <input asp-for="FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+            </div>
+            <div class="form-group">
+                <label>Doğru Cevap :</label>
+                <input asp-for="TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>

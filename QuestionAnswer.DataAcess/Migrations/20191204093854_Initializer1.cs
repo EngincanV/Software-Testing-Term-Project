@@ -62,6 +62,7 @@ namespace QuestionAnswer.DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SubCategoryId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     QuestionImage = table.Column<string>(maxLength: 150, nullable: true),
                     FirstContent = table.Column<string>(type: "text", nullable: true),
                     SecondContent = table.Column<string>(type: "text", nullable: true),
@@ -77,6 +78,12 @@ namespace QuestionAnswer.DataAccess.Migrations
                         name: "FK_Questions_SubCategories_SubCategoryId",
                         column: x => x.SubCategoryId,
                         principalTable: "SubCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Questions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -113,6 +120,11 @@ namespace QuestionAnswer.DataAccess.Migrations
                 name: "IX_Questions_SubCategoryId",
                 table: "Questions",
                 column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_UserId",
+                table: "Questions",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stats_SubCategoryId",

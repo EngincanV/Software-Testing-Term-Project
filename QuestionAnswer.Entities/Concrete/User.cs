@@ -21,5 +21,6 @@ namespace QuestionAnswer.Entities.Concrete
         public string Role { get; set; }
 
         public List<Stat> Stats { get; set; }
+        public List<Question> Questions { get; set; }
     }
 }

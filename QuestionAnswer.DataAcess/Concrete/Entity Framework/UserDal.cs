@@ -53,5 +53,10 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         {
             return _context.Users.FirstOrDefault(p => p.Username == userName && p.Password == password);
         }
+
+        public User FindUserByName(string userName)
+        {
+            return _context.Users.FirstOrDefault(p => p.Username == userName);
+        }
     }
 }

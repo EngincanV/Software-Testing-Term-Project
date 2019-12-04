@@ -23,5 +23,10 @@ namespace QuestionAnswer.Business.Concrete
         {
             return _userDal.UserExist(userName, password);
         }
+
+        public User FindUserByName(string userName)
+        {
+            return _userDal.FindUserByName(userName);
+        }
     }
 }

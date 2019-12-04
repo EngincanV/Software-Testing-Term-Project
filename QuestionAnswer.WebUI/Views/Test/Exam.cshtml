@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Exam";
+}
+@model ExamViewModel
+@if (ViewData["notExistQuestions"] == null)
+{
+    @if (ViewData["trueAnswer"] == null)
+    {
+        <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
+            <form asp-controller="Test" asp-action="Exam" method="post" id="submittedForm">
+                <input type="hidden" asp-for="Question.Id" />
+                <img src="@Model.Question.QuestionImage" class="card-img-top"><br />
+                <input type="hidden" asp-for="Question.QuestionImage" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="@Model.Question.FirstContent">
+                            <label class="custom-control-label" for="customRadio1">A) @Model.Question.FirstContent</label>
+                            <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="@Model.Question.SecondContent">
+                            <label class="custom-control-label" for="customRadio2">B) @Model.Question.SecondContent</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="@Model.Question.ThirdContent">
+                            <label class="custom-control-label" for="customRadio3">C) @Model.Question.ThirdContent</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input" value="@Model.Question.FourthContent">
+                            <label class="custom-control-label" for="customRadio4">D) @Model.Question.FourthContent</label>
+                        </div>
+                    </h5><br />
+                    <button type="submit" class="btn btn-success">Cevabı Onayla</button>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-8">
+                <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
+                    <form asp-controller="Test" asp-action="Exam" method="post" id="submittedForm">
+                        <input type="hidden" asp-for="Question.Id" />
+                        <img src="@Model.Question.QuestionImage" class="card-img-top"><br />
+                        <input type="hidden" asp-for="Question.QuestionImage" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="@Model.Question.FirstContent">
+                                    <label class="custom-control-label" for="customRadio1">A) @Model.Question.FirstContent</label>
+                                    <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="@Model.Question.SecondContent">
+                                    <label class="custom-control-label" for="customRadio2">B) @Model.Question.SecondContent</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="@Model.Question.ThirdContent">
+                                    <label class="custom-control-label" for="customRadio3">C) @Model.Question.ThirdContent</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input" value="@Model.Question.FourthContent">
+                                    <label class="custom-control-label" for="customRadio4">D) @Model.Question.FourthContent</label>
+                                </div>
+                            </h5><br />
+                            <button type="submit" class="btn btn-success" disabled="disabled">Cevabı Onayla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="alert alert-info">@ViewData["trueAnswer"]</div>
+                <form>
+                    <button type="submit" class="btn btn-success float-right">Diğer Soruyu Gör</button>
+                </form>
+            </div>
+        </div>
+
+    }
+}
+else
+{
+    <div class="alert alert-danger text-center justify-content-center">@ViewData["notExistQuestions"]</div>
+}
+
+<script>
+    var studentAnswer = document.getElementById("studentAnswer");
+
+    document.getElementById("submittedForm").onsubmit = (e) => {
+        if (document.getElementById('customRadio1').checked) {
+            studentAnswer.value = document.getElementById('customRadio1').value;
+        }
+        else if (document.getElementById('customRadio2').checked) {
+            studentAnswer.value = document.getElementById('customRadio2').value;
+        }
+        else if (document.getElementById('customRadio3').checked) {
+            studentAnswer.value = document.getElementById('customRadio3').value;
+        }
+        else if (document.getElementById('customRadio4').checked) {
+            studentAnswer.value = document.getElementById('customRadio4').value;
+        }
+    };
+</script>

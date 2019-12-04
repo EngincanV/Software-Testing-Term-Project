@@ -3,36 +3,35 @@
     ViewData["Title"] = "Login";
 }
 @model QuestionAnswer.Entities.Concrete.User
-    <div class="container justify-content-center">
-        <div class="row">
-            <div class="col-8">
-                <h1 class="mt-5">Login</h1>
-                <hr><br/>
-                <form asp-action="Login" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label class="text-left">Kullanıcı Adı:</label>
-                        <input type="text" asp-for="Username" class="form-control" placeholder="Lütfen kullanıcı adınızı giriniz..."/>
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="text-left">Şifre :</label>
-                        <input type="password" asp-for="Password" class="form-control" placeholder="Lütfen şifrenizi giriniz..."/>
-                    </div>
-                    <div class="form-group">
-                        <br/>
-                        <input type="submit" class="btn btn-primary" value="Giriş Yap"/>
-                    </div>
-                    @if (ViewBag.emptyFields != null)
-                    {
-                        <div class="alert alert-danger">
-                            @ViewBag.emptyFields
-                        </div>
-                    }
-                    else
-                    {
-                    }
-                </form>
+<form asp-action="Login" method="post" class="text-center border border-light p-5 m-5">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <p class="h4 mb-4">Giriş Yap</p>
+
+    <input asp-for="Username" type="text" id="defaultLoginFormUsername" class="form-control mb-4" placeholder="Kullanıcı Adı...">
+    <span asp-validation-for="Username" class="text-danger"></span>
+    <input asp-for="Password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Şifre...">
+    <span asp-validation-for="Password" class="text-danger"></span>
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Beni Hatırla</label>
             </div>
         </div>
+        <div>
+            <a href="#">Şifrenizi mi unuttunuz?</a>
+        </div>
     </div>
+
+    <button class="btn btn-info btn-block my-4" type="submit">Giriş</button>
+    @if (ViewBag.emptyFields != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.emptyFields
+        </div>
+    }
+    else
+    {
+    }
+</form>

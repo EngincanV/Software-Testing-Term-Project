@@ -60,9 +60,13 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.Property<string>("TrueContent")
                         .HasMaxLength(50);
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SubCategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -133,6 +137,11 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.HasOne("QuestionAnswer.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany("Questions")
                         .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QuestionAnswer.Entities.Concrete.User", "User")
+                        .WithMany("Questions")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
