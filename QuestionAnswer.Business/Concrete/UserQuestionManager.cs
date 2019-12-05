@@ -20,9 +20,9 @@ namespace QuestionAnswer.Business.Concrete
             return _userQuestionDal.GetByUserId(userId);
         }
 
-        public UserQuestion GetByQuestionId(int questionId)
+        public UserQuestion GetByQuestionId(int questionId, int userId)
         {
-            return _userQuestionDal.GetByQuestionId(questionId);
+            return _userQuestionDal.GetByQuestionId(questionId, userId);
         }
 
         public void Update(UserQuestion userQuestion)

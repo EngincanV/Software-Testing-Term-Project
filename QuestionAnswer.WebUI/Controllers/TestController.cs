@@ -57,9 +57,10 @@ namespace QuestionAnswer.WebUI.Controllers
         public IActionResult Exam([Bind("Id")] Question question , [Bind("AnswerContent")] Answer answer)
         {
             var getQuestion = _service.Get(question.Id);
-            var getByQuestionId = _userQuestionService.GetByQuestionId(question.Id);
-
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
+
+            var getByQuestionId = _userQuestionService.GetByQuestionId(question.Id, userId);
+
 
             if (answer.AnswerContent == getQuestion.TrueContent)
             {

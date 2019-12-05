@@ -6,7 +6,7 @@ namespace QuestionAnswer.Business.Abstract
     public interface IUserQuestionService
     {
         List<UserQuestion> GetByUserId(int userId);
-        UserQuestion GetByQuestionId(int questionId);
+        UserQuestion GetByQuestionId(int questionId, int userId);
         void Update(UserQuestion userQuestion);
     }
 }

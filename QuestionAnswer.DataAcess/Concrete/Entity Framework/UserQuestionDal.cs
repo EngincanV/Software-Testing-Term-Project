@@ -51,9 +51,9 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
             return _context.UserQuestions.Where(p => p.UserId == userId && p.IsAnswerTrue == false).ToList();
         }
 
-        public UserQuestion GetByQuestionId(int questionId)
+        public UserQuestion GetByQuestionId(int questionId, int userId)
         {
-            return _context.UserQuestions.FirstOrDefault(p => p.QuestionId == questionId);
+            return _context.UserQuestions.FirstOrDefault(p => p.QuestionId == questionId && p.UserId == userId);
         }
     }
 }
