@@ -47,6 +47,8 @@ namespace QuestionAnswer.WebUI
             services.AddScoped<IQuestionDal, QuestionDal>();
             services.AddScoped<IStatDal, StatDal>();
             services.AddScoped<IStatService, StatManager>();
+            services.AddScoped<IUserQuestionDal, UserQuestionDal>();
+            services.AddScoped<IUserQuestionService, UserQuestionManager>();
 
             //add authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();

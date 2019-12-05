@@ -9,7 +9,7 @@ using QuestionAnswer.DataAccess.Concrete.Entity_Framework;
 namespace QuestionAnswer.DataAccess.Migrations
 {
     [DbContext(typeof(QuestionAnswerContext))]
-    [Migration("20191204093854_Initializer1")]
+    [Migration("20191205055800_Initializer1")]
     partial class Initializer1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,8 +46,6 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.Property<string>("FourthContent")
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsAnswerTrue");
-
                     b.Property<string>("QuestionImage")
                         .HasMaxLength(150);
 
@@ -62,13 +60,9 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.Property<string>("TrueContent")
                         .HasMaxLength(50);
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -134,16 +128,32 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("QuestionAnswer.Entities.Concrete.UserQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsAnswerTrue");
+
+                    b.Property<int>("QuestionId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserQuestions");
+                });
+
             modelBuilder.Entity("QuestionAnswer.Entities.Concrete.Question", b =>
                 {
                     b.HasOne("QuestionAnswer.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany("Questions")
                         .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("QuestionAnswer.Entities.Concrete.User", "User")
-                        .WithMany("Questions")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -165,6 +175,19 @@ namespace QuestionAnswer.DataAccess.Migrations
                     b.HasOne("QuestionAnswer.Entities.Concrete.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QuestionAnswer.Entities.Concrete.UserQuestion", b =>
+                {
+                    b.HasOne("QuestionAnswer.Entities.Concrete.Question", "Question")
+                        .WithMany("UserQuestions")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QuestionAnswer.Entities.Concrete.User", "User")
+                        .WithMany("UserQuestions")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

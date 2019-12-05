@@ -19,11 +19,6 @@ namespace QuestionAnswer.Business.Concrete
             return _questionDal.GetAll();
         }
 
-        public Question GetQuestion(int userId)
-        {
-            return _questionDal.GetQuestion(userId);
-        }
-
         public Question Get(int id)
         {
             return _questionDal.Get(id);

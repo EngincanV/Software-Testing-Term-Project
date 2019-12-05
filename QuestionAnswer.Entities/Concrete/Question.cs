@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using QuestionAnswer.Entities.Abstract;
@@ -9,7 +10,6 @@ namespace QuestionAnswer.Entities.Concrete
     {
         public int Id { get; set; }
         public int SubCategoryId { get; set; }
-        public int UserId { get; set; }
 
         [StringLength(150)]
         public string QuestionImage { get; set; }
@@ -29,9 +29,9 @@ namespace QuestionAnswer.Entities.Concrete
         [StringLength(50)]
         public string TrueContent { get; set; }
 
-        public bool IsAnswerTrue { get; set; }
 
         public SubCategory SubCategory { get; set; }
-        public User User { get; set; }
+        public List<UserQuestion> UserQuestions { get; set; }
+
     }
 }

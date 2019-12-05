@@ -9,6 +9,7 @@ namespace QuestionAnswer.Entities.Concrete
         public User()
         {
             this.Stats = new List<Stat>();
+            this.UserQuestions = new List<UserQuestion>();
         }
 
         public int Id { get; set; }
@@ -21,6 +22,6 @@ namespace QuestionAnswer.Entities.Concrete
         public string Role { get; set; }
 
         public List<Stat> Stats { get; set; }
-        public List<Question> Questions { get; set; }
+        public List<UserQuestion> UserQuestions { get; set; }
     }
 }

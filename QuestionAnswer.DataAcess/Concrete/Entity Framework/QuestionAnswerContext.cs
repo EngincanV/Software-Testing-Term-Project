@@ -15,5 +15,6 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         public DbSet<Stat> Stats { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserQuestion> UserQuestions { get; set; }
     }
 }
