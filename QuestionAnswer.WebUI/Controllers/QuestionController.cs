@@ -1,25 +1,110 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.Entities.Concrete;
+using QuestionAnswer.WebUI.Models;
 
 namespace QuestionAnswer.WebUI.Controllers
 {
     [Authorize(Roles = "Teacher")]
     public class QuestionController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ICategoryService _categoryService;
+        private readonly ISubCategoryService _subCategoryService;
+        private readonly IQuestionService _questionService;
+        private readonly IUserService _userService;
+        private readonly IUserQuestionService _userQuestionService;
+
+        public QuestionController(IHostingEnvironment hostingEnvironment, ICategoryService categoryService,
+            ISubCategoryService subCategoryService, IQuestionService questionService, IUserService userService, IUserQuestionService userQuestionService)
+        {
+            _hostingEnvironment = hostingEnvironment;
+            _categoryService = categoryService;
+            _subCategoryService = subCategoryService;
+            _questionService = questionService;
+            _userService = userService;
+            _userQuestionService = userQuestionService;
+        }
+
         public IActionResult Add()
         {
-            return View();
+            var questionAddViewModel = new QuestionAddViewModel
+            {
+                GetAllCategories = new SelectList(_categoryService.GetCategoriesName()),
+                SubCategories = new SelectList(_subCategoryService.GetSubCategoriesByName())
+            };
+
+            return View(questionAddViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Add(
-            [Bind("QuestionImage, FirstContent, SecondContent, ThirdContent, FourthContent, TrueContent")]
-            Question question)
+            [Bind("FirstContent, SecondContent, ThirdContent, FourthContent, TrueContent")]
+            Question question, List<IFormFile> file, [Bind("CategoryName")] Category category, [Bind("SubCategoryName")] SubCategory subCategory)
         {
-            //receive datas and save them into the database
-            return View();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    bool isEqual = false;
+
+                    foreach (var categoryName in _categoryService.GetCategoriesName())
+                    {
+                        if (category.CategoryName == categoryName)
+                            isEqual = true;
+                    }
+
+                    if (!isEqual)
+                    {
+                        _categoryService.Add(category);
+                        subCategory.CategoryId = category.Id;
+                        _subCategoryService.Add(subCategory);
+                    }
+
+                    var subCategoryId = _subCategoryService.GetSubCategoryIdByName(subCategory.SubCategoryName);
+
+                    var fileName = Path.Combine(_hostingEnvironment.WebRootPath + "/img/",
+                        Path.GetFileName(file[0].FileName));
+
+                    file[0].CopyTo(new FileStream(fileName, FileMode.Create));
+                    question.QuestionImage = "/img/" + file[0].FileName;
+                    question.SubCategoryId = subCategoryId;
+
+                    _questionService.Add(question);
+
+                    foreach (var userId in _userService.GetAll())
+                    {
+                        if (userId.Id == 1 || userId.Id == 2 || userId.Id == 3) { }
+                        _userQuestionService.Add(new UserQuestion
+                        {
+                            IsAnswerTrue = false,
+                            QuestionId = question.Id,
+                            UserId = userId.Id,
+                        });
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                }
+                catch { }
+            }
+
+            var questionAddViewModel = new QuestionAddViewModel
+            {
+                GetAllCategories = new SelectList(_categoryService.GetCategoriesName()),
+                SubCategories = new SelectList(_subCategoryService.GetSubCategoriesByName())
+            };
+            ViewData["error"] = "Bir hata oluştu tekrar deneyiniz";
+
+            return View(questionAddViewModel);
         }
     }
 }

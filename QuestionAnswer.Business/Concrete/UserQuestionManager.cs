@@ -29,5 +29,10 @@ namespace QuestionAnswer.Business.Concrete
         {
             _userQuestionDal.Update(userQuestion);
         }
+
+        public void Add(UserQuestion entity)
+        {
+            _userQuestionDal.Add(entity);
+        }
     }
 }

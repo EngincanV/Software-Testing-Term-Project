@@ -2,38 +2,107 @@
 @{
     ViewData["Title"] = "Add";
 }
-@model QuestionAnswer.Entities.Concrete.Question
-    <div class="container jumbotron">
+@model QuestionAddViewModel
+<div class="container">
+    @if (ViewData["error"] != null)
+    {
+        <div class="alert alert-danger"></div>
+    }
+    else
+    {
         <h1 class="text-center">Soru Ekle</h1>
-        <hr/>
-        <form asp-action="Add" method="post">
+        <hr />
+        <form id="submitTheForm" asp-action="Add" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="custom-file">
-                    <input asp-for="QuestionImage" type="file" class="custom-file-input" id="customFile">
+                    <input type="file" name="file" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile">Soru Resimi Seçiniz</label>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Kategori Ekle
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Kategori Ekle</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Kategori Adı: </label>
+                                <input id="doThis" asp-for="Category.CategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz kategoriyi giriniz..." />
+                            </div>
+                            <div class="form-group">
+                                <label>Alt Kategori Adı: </label>
+                                <input id="subCategory" asp-for="SubCategory.SubCategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz alt kategoriyi giriniz..." />
+                            </div>
+                            <div class="text-muted text-center"><hr />---- veya -----<hr /></div>
+                            <div class="form-group">
+                                <label>Kategori Seç: </label>
+                                <select asp-items="@Model.GetAllCategories" class="form-control" id="chooseCategory"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Alt Kategori Seç: </label>
+                                <select id="subCategoryList" asp-items="@Model.SubCategories" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>A şıkkı :</label>
-                <input asp-for="FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
+                <input asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
             </div>
             <div class="form-group">
                 <label>B şıkkı :</label>
-                <input asp-for="SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
+                <input asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
             </div>
             <div class="form-group">
                 <label>C şıkkı :</label>
-                <input asp-for="ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
+                <input asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
             </div>
             <div class="form-group">
                 <label>D şıkkı :</label>
-                <input asp-for="FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+                <input asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
             </div>
             <div class="form-group">
                 <label>Doğru Cevap :</label>
-                <input asp-for="TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+                <input asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
             </div>
             <button type="submit" class="btn btn-primary">Kaydet</button>
         </form>
-    </div>
+    }
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".custom-file-input").on("change",
+                function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next(".custom-file-label").html(fileName);
+                });
+            $("#submitTheForm").on("submit",
+                function () {
+                    var doThis = $("#doThis").val();
+                    var chooseCategory = $("#chooseCategory").val();
+                    var subCategory = $("#subCategory").val();
+                    var subCategoryList = $("#subCategoryList").val();
+                    if (doThis == "")
+                        $("#doThis").val(chooseCategory);
+                    if (subCategory == "")
+                        $("#subCategory").val(subCategoryList);
+                });
+        });
+    </script>
+}

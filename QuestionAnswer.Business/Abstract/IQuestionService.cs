@@ -8,5 +8,6 @@ namespace QuestionAnswer.Business.Abstract
         List<Question> GetAll();
         Question Get(int id);
         void Update(Question entity);
+        void Add(Question entity);
     }
 }
