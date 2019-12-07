@@ -61,7 +61,6 @@ namespace QuestionAnswer.WebUI.Controllers
 
             var getByQuestionId = _userQuestionService.GetByQuestionId(question.Id, userId);
 
-
             if (answer.AnswerContent == getQuestion.TrueContent)
             {
                 getByQuestionId.IsAnswerTrue = true;
@@ -73,12 +72,22 @@ namespace QuestionAnswer.WebUI.Controllers
                 {
                     UserId = userId,
                     TrueCount = 1,
-                    SubCategoryId = getQuestion.SubCategoryId
+                    SubCategoryId = getQuestion.SubCategoryId,
+                    Date = DateTime.Now.ToShortDateString()
                 });
             }
 
-            else 
+            else
+            {
                 ViewData["trueAnswer"] = "Cevap Yanlış";
+                _statService.Add(new Stat
+                {
+                    UserId = userId,
+                    FalseCount = 1,
+                    SubCategoryId = getQuestion.SubCategoryId,
+                    Date = DateTime.Now.ToShortDateString()
+                });
+            }
 
             var examViewModel = new ExamViewModel()
             {

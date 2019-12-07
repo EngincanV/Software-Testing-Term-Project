@@ -3,7 +3,7 @@
     ViewData["Title"] = "Add";
 }
 @model QuestionAddViewModel
-<div class="container">
+<div class="container col-8">
     @if (ViewData["error"] != null)
     {
         <div class="alert alert-danger"></div>
@@ -11,15 +11,16 @@
     else
     {
         <h1 class="text-center">Soru Ekle</h1>
-        <hr />
+        <br />
         <form id="submitTheForm" asp-action="Add" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" name="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Soru Resimi Seçiniz</label>
+                    <label class="custom-file-label" for="customFile">Soru Resimini Seçiniz...</label>
                 </div>
             </div>
+
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Kategori Ekle
@@ -29,7 +30,7 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header text-center">
                             <h5 class="modal-title text-center" id="exampleModalLabel">Kategori Ekle</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -61,6 +62,7 @@
                 </div>
             </div>
             <div class="form-group">
+                <br/>
                 <label>A şıkkı :</label>
                 <input asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
             </div>
@@ -80,7 +82,7 @@
                 <label>Doğru Cevap :</label>
                 <input asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
             </div>
-            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <button type="submit" class="btn btn-success my-4 btn-block">Kaydet</button>
         </form>
     }
 </div>

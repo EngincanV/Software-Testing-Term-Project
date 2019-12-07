@@ -81,15 +81,17 @@ namespace QuestionAnswer.WebUI.Controllers
 
                     _questionService.Add(question);
 
-                    foreach (var userId in _userService.GetAll())
+                    foreach (var user in _userService.GetAll())
                     {
-                        if (userId.Id == 1 || userId.Id == 2 || userId.Id == 3) { }
-                        _userQuestionService.Add(new UserQuestion
+                        if(user.Role == "Student")
                         {
-                            IsAnswerTrue = false,
-                            QuestionId = question.Id,
-                            UserId = userId.Id,
-                        });
+                            _userQuestionService.Add(new UserQuestion
+                            {
+                                IsAnswerTrue = false,
+                                QuestionId = question.Id,
+                                UserId = user.Id,
+                            });
+                        }
                     }
 
                     return RedirectToAction("Index", "Home");

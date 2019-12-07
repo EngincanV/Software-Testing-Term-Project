@@ -10,30 +10,32 @@
         <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
             <form asp-controller="Test" asp-action="Exam" method="post" id="submittedForm">
                 <input type="hidden" asp-for="Question.Id" />
-                <img src="@Model.Question.QuestionImage" class="card-img-top"><br />
+                <img src="@Model.Question.QuestionImage" class="card-img-top" style="width: 80%; height: 80%"><br />
                 <input type="hidden" asp-for="Question.QuestionImage" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="@Model.Question.FirstContent">
-                            <label class="custom-control-label" for="customRadio1">A) @Model.Question.FirstContent</label>
+                        <div class="form-group ml-5 mr-5">
+                            <button type="button" id="first" class="btn btn-info btn-block">A) @Model.Question.FirstContent</button>
                             <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
+                            <input type="hidden" value="@Model.Question.FirstContent" id="firstContent" />
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="@Model.Question.SecondContent">
-                            <label class="custom-control-label" for="customRadio2">B) @Model.Question.SecondContent</label>
+                        <div class="form-group ml-5 mr-5">
+                            <button type="button" id="second" class="btn btn-info btn-block">B) @Model.Question.SecondContent</button>
+                            <input type="hidden" value="@Model.Question.SecondContent" id="secondContent" />
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="@Model.Question.ThirdContent">
-                            <label class="custom-control-label" for="customRadio3">C) @Model.Question.ThirdContent</label>
+                        <div class="form-group ml-5 mr-5">
+                            <button type="button" id="third" class="btn btn-info btn-block">C) @Model.Question.ThirdContent</button>
+                            <input type="hidden" value="@Model.Question.ThirdContent" id="thirdContent" />
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input" value="@Model.Question.FourthContent">
-                            <label class="custom-control-label" for="customRadio4">D) @Model.Question.FourthContent</label>
+                        <div class="form-group ml-5 mr-5">
+                            <button type="button" id="fourth" class="btn btn-info btn-block">D) @Model.Question.FourthContent</button>
+                            <input type="hidden" value="@Model.Question.FourthContent" id="fourthContent" />
                         </div>
                     </h5><br />
-                    <button type="submit" class="btn btn-success">Cevabı Onayla</button>
+                    <div class="form-group ml-5 mr-5">
+                        <button type="submit" class="btn btn-success btn-block">Cevabı Onayla</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -50,25 +52,27 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="@Model.Question.FirstContent">
-                                    <label class="custom-control-label" for="customRadio1">A) @Model.Question.FirstContent</label>
+                                <div class="form-group ml-5 mr-5">
+                                    <button type="button" id="first" class="btn btn-info btn-block">A) @Model.Question.FirstContent</button>
                                     <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
+                                    <input type="hidden" value="@Model.Question.FirstContent" id="firstContent" />
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="@Model.Question.SecondContent">
-                                    <label class="custom-control-label" for="customRadio2">B) @Model.Question.SecondContent</label>
+                                <div class="form-group ml-5 mr-5">
+                                    <button type="button" id="second" class="btn btn-info btn-block">B) @Model.Question.SecondContent</button>
+                                    <input type="hidden" value="@Model.Question.SecondContent" id="secondContent" />
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="@Model.Question.ThirdContent">
-                                    <label class="custom-control-label" for="customRadio3">C) @Model.Question.ThirdContent</label>
+                                <div class="form-group ml-5 mr-5">
+                                    <button type="button" id="third" class="btn btn-info btn-block">C) @Model.Question.ThirdContent</button>
+                                    <input type="hidden" value="@Model.Question.ThirdContent" id="thirdContent" />
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input" value="@Model.Question.FourthContent">
-                                    <label class="custom-control-label" for="customRadio4">D) @Model.Question.FourthContent</label>
+                                <div class="form-group ml-5 mr-5">
+                                    <button type="button" id="fourth" class="btn btn-info btn-block">D) @Model.Question.FourthContent</button>
+                                    <input type="hidden" value="@Model.Question.FourthContent" id="fourthContent" />
                                 </div>
                             </h5><br />
-                            <button type="submit" class="btn btn-success" disabled="disabled">Cevabı Onayla</button>
+                            <div class="form-group ml-5 mr-5">
+                                <button type="submit" class="btn btn-success btn-block">Cevabı Onayla</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -89,20 +93,27 @@ else
 }
 
 <script>
+    var tempAnswer = "";
     var studentAnswer = document.getElementById("studentAnswer");
 
+    var btn1 = document.getElementById("first");
+    var firstContent = document.getElementById("firstContent");
+
+    var btn2 = document.getElementById("second");
+    var secondContent = document.getElementById("secondContent");
+
+    var btn3 = document.getElementById("third");
+    var thirdContent = document.getElementById("thirdContent");
+
+    var btn4 = document.getElementById("fourth");
+    var fourthContent = document.getElementById("fourthContent");
+
+    btn1.onclick = () => { tempAnswer = firstContent.value };
+    btn2.onclick = () => { tempAnswer = secondContent.value };
+    btn3.onclick = () => { tempAnswer = thirdContent.value };
+    btn4.onclick = () => { tempAnswer = fourthContent.value };
+
     document.getElementById("submittedForm").onsubmit = (e) => {
-        if (document.getElementById('customRadio1').checked) {
-            studentAnswer.value = document.getElementById('customRadio1').value;
-        }
-        else if (document.getElementById('customRadio2').checked) {
-            studentAnswer.value = document.getElementById('customRadio2').value;
-        }
-        else if (document.getElementById('customRadio3').checked) {
-            studentAnswer.value = document.getElementById('customRadio3').value;
-        }
-        else if (document.getElementById('customRadio4').checked) {
-            studentAnswer.value = document.getElementById('customRadio4').value;
-        }
+        studentAnswer.value = tempAnswer;
     };
 </script>
