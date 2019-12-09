@@ -3,7 +3,12 @@
     ViewData["Title"] = "Add";
 }
 @model QuestionAddViewModel
-    <div class="container col-8">
+<style>
+    .custom-file-label::after {
+        content: "Fotoğrafı Seçiniz" !important;
+    }
+</style>
+<div class="container col-8">
         @if (ViewData["error"] != null)
         {
             <div class="alert alert-danger"></div>

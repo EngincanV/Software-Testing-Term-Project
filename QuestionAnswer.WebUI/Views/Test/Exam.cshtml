@@ -5,34 +5,37 @@
 @model ExamViewModel
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
-    //var questionImage = document.getElementById("questionImg");
-
-    //var tempAnswer = "";
-    //var studentAnswer = document.getElementById("studentAnswer");
-
-    //var btn1 = document.getElementById("first");
-    //var firstContent = document.getElementById("firstContent");
-
-    //var btn2 = document.getElementById("second");
-    //var secondContent = document.getElementById("secondContent");
-
-    //var btn3 = document.getElementById("third");
-    //var thirdContent = document.getElementById("thirdContent");
-
-    //var btn4 = document.getElementById("fourth");
-    //var fourthContent = document.getElementById("fourthContent");
-
-    //btn1.onclick = () => { tempAnswer = firstContent.value };
-    //btn2.onclick = () => { tempAnswer = secondContent.value };
-    //btn3.onclick = () => { tempAnswer = thirdContent.value };
-    //btn4.onclick = () => { tempAnswer = fourthContent.value };
-
-    //document.getElementById("submittedForm").onsubmit = (e) => {
-    //    studentAnswer.value = tempAnswer;
-    //    console.log(questionImage.value);
-    //};
-
     $(document).ready(function () {
+        var minuteCounter = 60;
+        var secondCounter = 0;
+        var minute = $("#minute");
+        var seconds = $("#seconds");
+
+        minute.text(minuteCounter);
+        seconds.text("0" + secondCounter);
+
+        setInterval(function() {
+            setTimeout(function() {
+                if (secondCounter === 0) {
+                    minuteCounter--;
+                    secondCounter = 60;
+                }
+                secondCounter--;
+                secondCounter >= 0 && secondCounter <= 9
+                    ? (seconds.text("0" + secondCounter))
+                    : (seconds.text(secondCounter));
+
+                minuteCounter >= 0 && minuteCounter <= 9
+                    ? (minute.text("0" + minuteCounter))
+                    : (minute.text(minuteCounter));
+
+                if (secondCounter === 0 && minuteCounter === 0) {
+                    clearTimeout();
+                    clearInterval();
+                }
+            }, 1000);
+        }, 1000);
+
         var tempAnswer = "";
         $("#first").click(function () { tempAnswer = $("#firstContent").val() });
         $("#second").click(function () { tempAnswer = $("#secondContent").val() });
@@ -86,6 +89,8 @@
 {
     @if (ViewData["trueAnswer"] == null)
     {
+<div class="row">
+    <div class="col-9">
         <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
             <p style="display: none !important" id="questionId">@Model.Question.Id</p>
             <img src="@Model.Question.QuestionImage" class="card-img-top" style="width: 80%; height: 80%" id="questionImg"><br />
@@ -114,6 +119,16 @@
                 <input type="submit" class="btn btn-success btn-block" id="submittedForm" value="Cevabı Onayla" />
             </div>
         </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body btn btn-warning text-center" style="font-weight: bold">
+                <span id="minute"></span>:<span id="seconds"></span>
+            </div>
+        </div>
+    </div>
+</div>
+        
     }
 
 }
