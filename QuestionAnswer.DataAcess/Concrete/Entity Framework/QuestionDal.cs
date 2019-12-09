@@ -44,5 +44,10 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
             deletedEntity.State = EntityState.Deleted;
             _context.SaveChanges();
         }
+
+        public int FindIdByQuestionImage(string questionImage)
+        {
+            return _context.Questions.FirstOrDefault(p => p.QuestionImage == questionImage).Id;
+        }
     }
 }

@@ -33,5 +33,10 @@ namespace QuestionAnswer.Business.Concrete
         {
             _questionDal.Add(entity);
         }
+
+        public int FindIdByQuestionImage(string questionImage)
+        {
+            return _questionDal.FindIdByQuestionImage(questionImage);
+        }
     }
 }

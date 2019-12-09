@@ -3,117 +3,121 @@
     ViewData["Title"] = "Exam";
 }
 @model ExamViewModel
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    //var questionImage = document.getElementById("questionImg");
+
+    //var tempAnswer = "";
+    //var studentAnswer = document.getElementById("studentAnswer");
+
+    //var btn1 = document.getElementById("first");
+    //var firstContent = document.getElementById("firstContent");
+
+    //var btn2 = document.getElementById("second");
+    //var secondContent = document.getElementById("secondContent");
+
+    //var btn3 = document.getElementById("third");
+    //var thirdContent = document.getElementById("thirdContent");
+
+    //var btn4 = document.getElementById("fourth");
+    //var fourthContent = document.getElementById("fourthContent");
+
+    //btn1.onclick = () => { tempAnswer = firstContent.value };
+    //btn2.onclick = () => { tempAnswer = secondContent.value };
+    //btn3.onclick = () => { tempAnswer = thirdContent.value };
+    //btn4.onclick = () => { tempAnswer = fourthContent.value };
+
+    //document.getElementById("submittedForm").onsubmit = (e) => {
+    //    studentAnswer.value = tempAnswer;
+    //    console.log(questionImage.value);
+    //};
+
+    $(document).ready(function () {
+        var tempAnswer = "";
+        $("#first").click(function () { tempAnswer = $("#firstContent").val() });
+        $("#second").click(function () { tempAnswer = $("#secondContent").val() });
+        $("#third").click(function () { tempAnswer = $("#thirdContent").val() });
+        $("#fourth").click(function () { tempAnswer = $("#fourthContent").val() });
+
+        $("#submittedForm").click(function () {
+            var id = $("#questionId").text();
+            $("#studentAnswer").val(tempAnswer);
+            console.log(id);
+
+            var studentAnswer = $("#studentAnswer").val();
+            console.log(studentAnswer);
+
+            var jsonData = JSON.stringify({
+                AnswerContent: studentAnswer,
+                QuestionId: id
+            });
+            console.log(jsonData);
+
+            $.ajax({
+                type: "POST",
+                url: "/Test/Exam",
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: jsonData,
+                success: function (data) {
+                    if (data !== "") {
+                        $("#first").text("A) " + data.firstContent);
+                        $("#firstContent").val(data.firstContent);
+
+                        $("#second").text("B) " + data.secondContent);
+                        $("#secondContent").val(data.secondContent);
+
+                        $("#third").text("C) " + data.thirdContent);
+                        $("#thirdContent").val(data.thirdContent);
+
+                        $("#fourth").text("D) " + data.fourthContent);
+                        $("#fourthContent").val(data.fourthContent);
+
+                        $("#questionId").text(data.id);
+                        $("#questionImg").attr("src", data.questionImage);
+                    } else
+                        location.reload();
+                }
+            });
+        });
+    });
+</script>
 @if (ViewData["notExistQuestions"] == null)
 {
     @if (ViewData["trueAnswer"] == null)
     {
         <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
-            <form asp-controller="Test" asp-action="Exam" method="post" id="submittedForm">
-                <input type="hidden" asp-for="Question.Id" />
-                <img src="@Model.Question.QuestionImage" class="card-img-top" style="width: 80%; height: 80%"><br />
-                <input type="hidden" asp-for="Question.QuestionImage" />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <div class="form-group ml-5 mr-5">
-                            <button type="button" id="first" class="btn btn-info btn-block">A) @Model.Question.FirstContent</button>
-                            <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
-                            <input type="hidden" value="@Model.Question.FirstContent" id="firstContent" />
-                        </div>
-                        <div class="form-group ml-5 mr-5">
-                            <button type="button" id="second" class="btn btn-info btn-block">B) @Model.Question.SecondContent</button>
-                            <input type="hidden" value="@Model.Question.SecondContent" id="secondContent" />
-                        </div>
-                        <div class="form-group ml-5 mr-5">
-                            <button type="button" id="third" class="btn btn-info btn-block">C) @Model.Question.ThirdContent</button>
-                            <input type="hidden" value="@Model.Question.ThirdContent" id="thirdContent" />
-                        </div>
-                        <div class="form-group ml-5 mr-5">
-                            <button type="button" id="fourth" class="btn btn-info btn-block">D) @Model.Question.FourthContent</button>
-                            <input type="hidden" value="@Model.Question.FourthContent" id="fourthContent" />
-                        </div>
-                    </h5><br />
+            <p style="display: none !important" id="questionId">@Model.Question.Id</p>
+            <img src="@Model.Question.QuestionImage" class="card-img-top" style="width: 80%; height: 80%" id="questionImg"><br />
+            <input type="hidden" asp-for="Question.QuestionImage" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <h5 class="card-title">
                     <div class="form-group ml-5 mr-5">
-                        <button type="submit" class="btn btn-success btn-block">Cevabı Onayla</button>
+                        <button type="button" id="first" class="btn btn-info btn-block">A) @Model.Question.FirstContent</button>
+                        <input type="hidden" id="studentAnswer" />
+                        <input type="hidden" value="@Model.Question.FirstContent" id="firstContent" />
                     </div>
-                </div>
-            </form>
+                    <div class="form-group ml-5 mr-5">
+                        <button type="button" id="second" class="btn btn-info btn-block">B) @Model.Question.SecondContent</button>
+                        <input type="hidden" value="@Model.Question.SecondContent" id="secondContent" />
+                    </div>
+                    <div class="form-group ml-5 mr-5">
+                        <button type="button" id="third" class="btn btn-info btn-block">C) @Model.Question.ThirdContent</button>
+                        <input type="hidden" value="@Model.Question.ThirdContent" id="thirdContent" />
+                    </div>
+                    <div class="form-group ml-5 mr-5">
+                        <button type="button" id="fourth" class="btn btn-info btn-block">D) @Model.Question.FourthContent</button>
+                        <input type="hidden" value="@Model.Question.FourthContent" id="fourthContent" />
+                    </div>
+                </h5><br />
+                <input type="submit" class="btn btn-success btn-block" id="submittedForm" value="Cevabı Onayla" />
+            </div>
         </div>
     }
-    else
-    {
-        <div class="row">
-            <div class="col-8">
-                <div class="card mb-3 text-center" style="width: 70%; margin-left: auto; margin-right: auto">
-                    <form asp-controller="Test" asp-action="Exam" method="post" id="submittedForm">
-                        <input type="hidden" asp-for="Question.Id" />
-                        <img src="@Model.Question.QuestionImage" class="card-img-top"><br />
-                        <input type="hidden" asp-for="Question.QuestionImage" />
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <div class="form-group ml-5 mr-5">
-                                    <button type="button" id="first" class="btn btn-info btn-block">A) @Model.Question.FirstContent</button>
-                                    <input type="hidden" asp-for="@Model.AnswerContent" id="studentAnswer" />
-                                    <input type="hidden" value="@Model.Question.FirstContent" id="firstContent" />
-                                </div>
-                                <div class="form-group ml-5 mr-5">
-                                    <button type="button" id="second" class="btn btn-info btn-block">B) @Model.Question.SecondContent</button>
-                                    <input type="hidden" value="@Model.Question.SecondContent" id="secondContent" />
-                                </div>
-                                <div class="form-group ml-5 mr-5">
-                                    <button type="button" id="third" class="btn btn-info btn-block">C) @Model.Question.ThirdContent</button>
-                                    <input type="hidden" value="@Model.Question.ThirdContent" id="thirdContent" />
-                                </div>
-                                <div class="form-group ml-5 mr-5">
-                                    <button type="button" id="fourth" class="btn btn-info btn-block">D) @Model.Question.FourthContent</button>
-                                    <input type="hidden" value="@Model.Question.FourthContent" id="fourthContent" />
-                                </div>
-                            </h5><br />
-                            <div class="form-group ml-5 mr-5">
-                                <button type="submit" class="btn btn-success btn-block">Cevabı Onayla</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="alert alert-info">@ViewData["trueAnswer"]</div>
-                <form>
-                    <button type="submit" class="btn btn-success float-right">Diğer Soruyu Gör</button>
-                </form>
-            </div>
-        </div>
 
-    }
 }
 else
 {
     <div class="alert alert-danger text-center justify-content-center">@ViewData["notExistQuestions"]</div>
 }
-
-<script>
-    var tempAnswer = "";
-    var studentAnswer = document.getElementById("studentAnswer");
-
-    var btn1 = document.getElementById("first");
-    var firstContent = document.getElementById("firstContent");
-
-    var btn2 = document.getElementById("second");
-    var secondContent = document.getElementById("secondContent");
-
-    var btn3 = document.getElementById("third");
-    var thirdContent = document.getElementById("thirdContent");
-
-    var btn4 = document.getElementById("fourth");
-    var fourthContent = document.getElementById("fourthContent");
-
-    btn1.onclick = () => { tempAnswer = firstContent.value };
-    btn2.onclick = () => { tempAnswer = secondContent.value };
-    btn3.onclick = () => { tempAnswer = thirdContent.value };
-    btn4.onclick = () => { tempAnswer = fourthContent.value };
-
-    document.getElementById("submittedForm").onsubmit = (e) => {
-        studentAnswer.value = tempAnswer;
-    };
-</script>

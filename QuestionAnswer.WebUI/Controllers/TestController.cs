@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.Entities.Concrete;
 using QuestionAnswer.WebUI.Models;
@@ -25,13 +28,13 @@ namespace QuestionAnswer.WebUI.Controllers
 
         public IActionResult Exam()
         {
+            var userId = _userService.FindUserByName(User.Identity.Name).Id;
             var examViewModel = new ExamViewModel()
             {
                 AnswerContent = new Answer()
             };
 
-            var userId = _userService.FindUserByName(User.Identity.Name).Id;
-            var getUserQuestion = _userQuestionService.GetByUserId(userId); //isAnswerTrue = false ve userid eşit olanları sıralar
+            var getUserQuestion = _userQuestionService.GetByUserId(userId);
 
             foreach (var userQuestion in getUserQuestion)
             {
@@ -45,7 +48,7 @@ namespace QuestionAnswer.WebUI.Controllers
 
             if (examViewModel.Question == null)
             {
-                ViewData["notExistQuestions"] = "Bütün soruları cevapladınız. Öğretmenler tarafından yeni sorular eklenince testlerinize devam edebileceksiniz";
+                ViewData["notExistQuestions"] = "Bütün soruları cevapladınız. Bugünlük yapmanız gereken testi başarı ile gerçekleştirdiniz.";
                 return View();
             }
 
@@ -53,21 +56,17 @@ namespace QuestionAnswer.WebUI.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Exam([Bind("Id")] Question question , [Bind("AnswerContent")] Answer answer)
+        public IActionResult Exam([FromBody] Answer answer)
         {
-            var getQuestion = _service.Get(question.Id);
+            var getQuestion = _service.Get(answer.QuestionId);
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
 
-            var getByQuestionId = _userQuestionService.GetByQuestionId(question.Id, userId);
+            var getByQuestionId = _userQuestionService.GetByQuestionId(answer.QuestionId, userId);
 
             if (answer.AnswerContent == getQuestion.TrueContent)
             {
                 getByQuestionId.IsAnswerTrue = true;
                 _userQuestionService.Update(getByQuestionId);
-
-                ViewData["trueAnswer"] = "Cevap Doğru";
-
                 _statService.Add(new Stat
                 {
                     UserId = userId,
@@ -79,7 +78,6 @@ namespace QuestionAnswer.WebUI.Controllers
 
             else
             {
-                ViewData["trueAnswer"] = "Cevap Yanlış";
                 _statService.Add(new Stat
                 {
                     UserId = userId,
@@ -88,14 +86,36 @@ namespace QuestionAnswer.WebUI.Controllers
                     Date = DateTime.Now.ToShortDateString()
                 });
             }
+            var getUserQuestion = _userQuestionService.GetByUserId(userId);
+            var examViewModel = new ExamViewModel();
 
-            var examViewModel = new ExamViewModel()
+            foreach (var userQuestion in getUserQuestion)
             {
-                Question = getQuestion,
-                AnswerContent = new Answer()
-            };
+                var getQuestionByQuestionId = _service.Get(userQuestion.QuestionId);
+                if (getQuestionByQuestionId != null)
+                {
+                    examViewModel.Question = getQuestionByQuestionId;
+                    break;
+                }
+            }
 
-            return View(examViewModel);
+            if (examViewModel.Question != null)
+            {
+                var newQuestionJson = new Question
+                {
+                    FirstContent = examViewModel.Question.FirstContent,
+                    SecondContent = examViewModel.Question.SecondContent,
+                    ThirdContent = examViewModel.Question.ThirdContent,
+                    FourthContent = examViewModel.Question.FourthContent,
+                    QuestionImage = examViewModel.Question.QuestionImage,
+                    Id = examViewModel.Question.Id
+                };
+
+                return Json(newQuestionJson);
+            }
+            else
+                return Json("");
+
         }
     }
 }

@@ -48,7 +48,7 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
 
         public List<UserQuestion> GetByUserId(int userId)
         {
-            return _context.UserQuestions.Where(p => p.UserId == userId && p.IsAnswerTrue == false).ToList();
+            return _context.UserQuestions.Where(p => p.UserId == userId && p.IsAnswerTrue == false).Take(50).ToList();
         }
 
         public UserQuestion GetByQuestionId(int questionId, int userId)

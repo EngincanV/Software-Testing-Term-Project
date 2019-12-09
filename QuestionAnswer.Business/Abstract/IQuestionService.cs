@@ -9,5 +9,6 @@ namespace QuestionAnswer.Business.Abstract
         Question Get(int id);
         void Update(Question entity);
         void Add(Question entity);
+        int FindIdByQuestionImage(string questionImage);
     }
 }
