@@ -17,5 +17,15 @@ namespace QuestionAnswer.Business.Concrete
         {
             _statDal.Add(stat);
         }
+
+        public Stat GetByDate(string date, int subCategoryId)
+        {
+            return _statDal.GetByDate(date, subCategoryId);
+        }
+
+        public void Update(Stat stat)
+        {
+            _statDal.Update(stat);
+        }
     }
 }

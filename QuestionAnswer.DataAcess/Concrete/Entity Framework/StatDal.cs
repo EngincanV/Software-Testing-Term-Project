@@ -45,5 +45,10 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
             deletedEntity.State = EntityState.Deleted;
             _context.SaveChanges();
         }
+
+        public Stat GetByDate(string date, int subCategoryId)
+        {
+            return _context.Stats.FirstOrDefault(p => p.Date == date && p.SubCategoryId == subCategoryId);
+        }
     }
 }

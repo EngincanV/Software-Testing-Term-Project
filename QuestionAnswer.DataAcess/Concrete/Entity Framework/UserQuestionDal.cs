@@ -48,12 +48,17 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
 
         public List<UserQuestion> GetByUserId(int userId)
         {
-            return _context.UserQuestions.Where(p => p.UserId == userId && p.IsAnswerTrue == false).Take(50).ToList();
+            return _context.UserQuestions.Where(p => p.UserId == userId && p.IsAnswerTrue == false && p.IsVisited == false).Take(50).ToList();
         }
 
         public UserQuestion GetByQuestionId(int questionId, int userId)
         {
             return _context.UserQuestions.FirstOrDefault(p => p.QuestionId == questionId && p.UserId == userId);
+        }
+
+        public List<UserQuestion> GetAllByUserId(int userId)
+        {
+            return _context.UserQuestions.Where(p => p.UserId == userId).ToList();
         }
     }
 }

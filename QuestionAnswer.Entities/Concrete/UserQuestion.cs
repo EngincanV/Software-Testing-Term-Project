@@ -8,6 +8,7 @@ namespace QuestionAnswer.Entities.Concrete
         public int UserId { get; set; }
         public int QuestionId { get; set; }
         public bool IsAnswerTrue { get; set; }
+        public bool IsVisited { get; set; }
 
         public User User { get; set; }
         public Question Question { get; set; }

@@ -6,6 +6,9 @@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#instantQuestion").text(1);
+        var questionNo = 1;
+
         var minuteCounter = 60;
         var secondCounter = 0;
         var minute = $("#minute");
@@ -43,6 +46,8 @@
         $("#fourth").click(function () { tempAnswer = $("#fourthContent").val() });
 
         $("#submittedForm").click(function () {
+            questionNo++;
+
             var id = $("#questionId").text();
             $("#studentAnswer").val(tempAnswer);
             console.log(id);
@@ -78,6 +83,8 @@
 
                         $("#questionId").text(data.id);
                         $("#questionImg").attr("src", data.questionImage);
+
+                        $("#instantQuestion").text(questionNo);
                     } else
                         location.reload();
                 }
@@ -124,6 +131,8 @@
         <div class="card">
             <div class="card-body btn btn-warning text-center" style="font-weight: bold">
                 <span id="minute"></span>:<span id="seconds"></span>
+                <hr style="width: 100% !important" />
+                <span id="instantQuestion"></span> / 50
             </div>
         </div>
     </div>

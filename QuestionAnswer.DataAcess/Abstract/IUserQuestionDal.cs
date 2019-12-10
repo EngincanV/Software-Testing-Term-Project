@@ -7,5 +7,6 @@ namespace QuestionAnswer.DataAccess.Abstract
     {
         List<UserQuestion> GetByUserId(int userId);
         UserQuestion GetByQuestionId(int questionId, int userId);
+        List<UserQuestion> GetAllByUserId(int userId);
     }
 }

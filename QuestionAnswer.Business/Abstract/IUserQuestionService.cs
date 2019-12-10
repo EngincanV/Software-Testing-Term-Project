@@ -9,5 +9,6 @@ namespace QuestionAnswer.Business.Abstract
         UserQuestion GetByQuestionId(int questionId, int userId);
         void Update(UserQuestion userQuestion);
         void Add(UserQuestion entity);
+        List<UserQuestion> GetAllByUserId(int userId);
     }
 }

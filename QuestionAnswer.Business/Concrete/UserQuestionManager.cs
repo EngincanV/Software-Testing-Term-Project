@@ -34,5 +34,10 @@ namespace QuestionAnswer.Business.Concrete
         {
             _userQuestionDal.Add(entity);
         }
+
+        public List<UserQuestion> GetAllByUserId(int userId)
+        {
+            return _userQuestionDal.GetAllByUserId(userId);
+        }
     }
 }

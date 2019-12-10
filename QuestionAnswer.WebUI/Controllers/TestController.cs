@@ -26,9 +26,22 @@ namespace QuestionAnswer.WebUI.Controllers
             _userQuestionService = userQuestionService;
         }
 
+        private void VisitedQuestions(int userId)
+        {
+            var getAllByUserId = _userQuestionService.GetAllByUserId(userId);
+            foreach (var question in getAllByUserId)
+            {
+                question.IsVisited = false;
+                _userQuestionService.Update(question);
+            }
+        }
+
         public IActionResult Exam()
         {
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
+
+            VisitedQuestions(userId);
+
             var examViewModel = new ExamViewModel()
             {
                 AnswerContent = new Answer()
@@ -62,30 +75,53 @@ namespace QuestionAnswer.WebUI.Controllers
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
 
             var getByQuestionId = _userQuestionService.GetByQuestionId(answer.QuestionId, userId);
+            var subCategoryId = getQuestion.SubCategoryId;
+
+            var isDateExist = _statService.GetByDate(DateTime.Now.ToShortDateString(), subCategoryId);
+            getByQuestionId.IsVisited = true;
 
             if (answer.AnswerContent == getQuestion.TrueContent)
             {
                 getByQuestionId.IsAnswerTrue = true;
                 _userQuestionService.Update(getByQuestionId);
-                _statService.Add(new Stat
+
+                if (isDateExist != null)
                 {
-                    UserId = userId,
-                    TrueCount = 1,
-                    SubCategoryId = getQuestion.SubCategoryId,
-                    Date = DateTime.Now.ToShortDateString()
-                });
+                    isDateExist.TrueCount++;
+                    _statService.Update(isDateExist);
+                }
+                else
+                {
+                    _statService.Add(new Stat
+                    {
+                        UserId = userId,
+                        TrueCount = 1,
+                        SubCategoryId = getQuestion.SubCategoryId,
+                        Date = DateTime.Now.ToShortDateString()
+                    });
+                }
+                
             }
 
             else
             {
-                _statService.Add(new Stat
+                if (isDateExist != null)
                 {
-                    UserId = userId,
-                    FalseCount = 1,
-                    SubCategoryId = getQuestion.SubCategoryId,
-                    Date = DateTime.Now.ToShortDateString()
-                });
+                    isDateExist.FalseCount++;
+                    _statService.Update(isDateExist);
+                }
+                else
+                {
+                    _statService.Add(new Stat
+                    {
+                        UserId = userId,
+                        FalseCount = 1,
+                        SubCategoryId = getQuestion.SubCategoryId,
+                        Date = DateTime.Now.ToShortDateString()
+                    });
+                }
             }
+
             var getUserQuestion = _userQuestionService.GetByUserId(userId);
             var examViewModel = new ExamViewModel();
 
