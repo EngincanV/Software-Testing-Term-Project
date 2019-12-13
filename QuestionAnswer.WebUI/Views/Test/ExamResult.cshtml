@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "ExamResult";
+}
+
+<div class="card text-center mt-5">
+    <div class="card-header">
+        Test Sonuçları
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">50 Soruluk Testteki Doğru - Yanlış Sayıları</h5>
+        <p class="card-text">Doğru Sayısı: @ViewData["trueAnswerCount"]</p>
+        <p class="card-text">Yanlış Sayısı: @ViewData["falseAnswerCount"]</p>
+        <a href="/" class="btn btn-primary">Ana Sayfa</a>
+    </div>
+</div>
+

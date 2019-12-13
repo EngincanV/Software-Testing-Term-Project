@@ -23,6 +23,21 @@ namespace QuestionAnswer.Business.Concrete
             return _statDal.GetByDate(date, subCategoryId);
         }
 
+        public int SumDailyAnswer(int userId)
+        {
+            return _statDal.SumDailyAnswer(userId);
+        }
+
+        public int SumDailyFalseAnswer(int userId)
+        {
+            return _statDal.SumDailyFalseAnswer(userId);
+        }
+
+        public int SumDailyTrueAnswer(int userId)
+        {
+            return _statDal.SumDailyTrueAnswer(userId);
+        }
+
         public void Update(Stat stat)
         {
             _statDal.Update(stat);

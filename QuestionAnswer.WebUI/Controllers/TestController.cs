@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.Entities.Concrete;
 using QuestionAnswer.WebUI.Models;
@@ -39,7 +36,9 @@ namespace QuestionAnswer.WebUI.Controllers
         public IActionResult Exam()
         {
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
-
+            var dailyTestQuestionNo = 50;
+            var dailyAnswerSum = _statService.SumDailyAnswer(userId);
+            
             VisitedQuestions(userId);
 
             var examViewModel = new ExamViewModel()
@@ -59,7 +58,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 }
             }
 
-            if (examViewModel.Question == null)
+            if (examViewModel.Question == null || dailyTestQuestionNo == dailyAnswerSum)
             {
                 ViewData["notExistQuestions"] = "Bütün soruları cevapladınız. Bugünlük yapmanız gereken testi başarı ile gerçekleştirdiniz.";
                 return View();
@@ -100,7 +99,6 @@ namespace QuestionAnswer.WebUI.Controllers
                         Date = DateTime.Now.ToShortDateString()
                     });
                 }
-                
             }
 
             else
@@ -121,6 +119,12 @@ namespace QuestionAnswer.WebUI.Controllers
                     });
                 }
             }
+
+            var dailyTestQuestionNo = 50;
+            var dailyAnswerSum = _statService.SumDailyAnswer(userId);
+
+            if (dailyAnswerSum == dailyTestQuestionNo)
+                return Json("testResult");
 
             var getUserQuestion = _userQuestionService.GetByUserId(userId);
             var examViewModel = new ExamViewModel();
@@ -151,7 +155,16 @@ namespace QuestionAnswer.WebUI.Controllers
             }
             else
                 return Json("");
+        }
 
+        public IActionResult ExamResult()
+        {
+            var userId = _userService.FindUserByName(User.Identity.Name).Id;
+
+            ViewData["trueAnswerCount"] = _statService.SumDailyTrueAnswer(userId);
+            ViewData["falseAnswerCount"] = _statService.SumDailyFalseAnswer(userId);
+
+            return View();
         }
     }
 }
