@@ -1,4 +1,5 @@
 ﻿using QuestionAnswer.Entities.Concrete;
+using System.Collections.Generic;
 
 namespace QuestionAnswer.DataAccess.Abstract
 {
@@ -8,5 +9,7 @@ namespace QuestionAnswer.DataAccess.Abstract
         int SumDailyAnswer(int userId);
         int SumDailyTrueAnswer(int userId);
         int SumDailyFalseAnswer(int userId);
+        List<string> GetAllDates(int userId);
+        int SumTrueAnswerByDate(string date, int userId);
     }
 }

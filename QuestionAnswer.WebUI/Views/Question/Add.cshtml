@@ -22,7 +22,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <input type="file" name="file" class="custom-file-input" id="customFile" required="required">
                         <label class="custom-file-label" for="customFile">Soru Resimini Seçiniz...</label>
                     </div>
                 </div>
@@ -70,23 +70,23 @@
                 <div class="form-group">
                     <br />
                     <label>A şıkkı :</label>
-                    <input asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
+                    <input required="required" asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>B şıkkı :</label>
-                    <input asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
+                    <input required="required" asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>C şıkkı :</label>
-                    <input asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
+                    <input required="required" asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>D şıkkı :</label>
-                    <input asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+                    <input required="required" asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>Doğru Cevap :</label>
-                    <input asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
+                    <input required="required" asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
                 </div>
                 <button type="submit" class="btn btn-success my-4 btn-block">Kaydet</button>
             </form>

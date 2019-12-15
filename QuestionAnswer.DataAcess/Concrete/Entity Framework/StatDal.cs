@@ -69,5 +69,15 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         {
             return _context.Stats.Where(p => p.UserId == userId && p.Date == DateTime.Now.ToShortDateString()).Sum(p => p.FalseCount);
         }
+
+        public List<string> GetAllDates(int userId)
+        {
+            return _context.Stats.Where(p => p.UserId == userId).Select(p => p.Date).Distinct().ToList();
+        }
+
+        public int SumTrueAnswerByDate(string date, int userId)
+        {
+            return _context.Stats.Where(p => p.Date == date && p.UserId == userId).Sum(p => p.TrueCount);
+        }
     }
 }

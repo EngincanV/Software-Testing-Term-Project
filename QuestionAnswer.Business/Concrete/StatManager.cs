@@ -1,4 +1,5 @@
-﻿using QuestionAnswer.Business.Abstract;
+﻿using System.Collections.Generic;
+using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.DataAccess.Abstract;
 using QuestionAnswer.Entities.Concrete;
 
@@ -16,6 +17,11 @@ namespace QuestionAnswer.Business.Concrete
         public void Add(Stat stat)
         {
             _statDal.Add(stat);
+        }
+
+        public List<string> GetAllDates(int userId)
+        {
+            return _statDal.GetAllDates(userId);
         }
 
         public Stat GetByDate(string date, int subCategoryId)
@@ -36,6 +42,11 @@ namespace QuestionAnswer.Business.Concrete
         public int SumDailyTrueAnswer(int userId)
         {
             return _statDal.SumDailyTrueAnswer(userId);
+        }
+
+        public int SumTrueAnswerByDate(string date, int userId)
+        {
+            return _statDal.SumTrueAnswerByDate(date, userId);
         }
 
         public void Update(Stat stat)

@@ -39,3 +39,4 @@ C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Question\Add.g.cshtml.cs
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Test\Exam.g.cshtml.cs
 C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Test\ExamResult.g.cshtml.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.WebUI\obj\Debug\netcoreapp2.2\Razor\Views\Stats\Index.g.cshtml.cs

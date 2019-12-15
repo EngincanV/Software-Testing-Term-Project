@@ -38,10 +38,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 return View();
             }
 
-            //check the username and password
-            //here can be implemented checking logic from the database
             ClaimsIdentity identity = null;
-
             var isUserExist = _service.UserExist(user.Username, user.Password);
 
             if (isUserExist != null)

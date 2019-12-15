@@ -56,7 +56,6 @@ namespace QuestionAnswer.WebUI.Controllers
                 try
                 {
                     bool isEqual = false;
-
                     foreach (var categoryName in _categoryService.GetCategoriesName())
                     {
                         if (category.CategoryName == categoryName)
@@ -69,16 +68,12 @@ namespace QuestionAnswer.WebUI.Controllers
                         subCategory.CategoryId = category.Id;
                         _subCategoryService.Add(subCategory);
                     }
-
-                    var subCategoryId = _subCategoryService.GetSubCategoryIdByName(subCategory.SubCategoryName);
-
-                    var fileName = Path.Combine(_hostingEnvironment.WebRootPath + "/img/",
-                        Path.GetFileName(file[0].FileName));
-
+                    var fileName = Path.Combine(_hostingEnvironment.WebRootPath + "/img/", Path.GetFileName(file[0].FileName));
                     file[0].CopyTo(new FileStream(fileName, FileMode.Create));
                     question.QuestionImage = "/img/" + file[0].FileName;
-                    question.SubCategoryId = subCategoryId;
 
+                    var subCategoryId = _subCategoryService.GetSubCategoryIdByName(subCategory.SubCategoryName);
+                    question.SubCategoryId = subCategoryId;
                     _questionService.Add(question);
 
                     foreach (var user in _userService.GetAll())
@@ -93,12 +88,10 @@ namespace QuestionAnswer.WebUI.Controllers
                             });
                         }
                     }
-
                     return RedirectToAction("Index", "Home");
                 }
                 catch { }
             }
-
             var questionAddViewModel = new QuestionAddViewModel
             {
                 GetAllCategories = new SelectList(_categoryService.GetCategoriesName()),

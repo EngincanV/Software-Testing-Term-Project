@@ -38,7 +38,7 @@ namespace QuestionAnswer.WebUI.Controllers
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
             var dailyTestQuestionNo = 50;
             var dailyAnswerSum = _statService.SumDailyAnswer(userId);
-            
+
             VisitedQuestions(userId);
 
             var examViewModel = new ExamViewModel()
@@ -67,6 +67,23 @@ namespace QuestionAnswer.WebUI.Controllers
             return View(examViewModel);
         }
 
+        private Stat NewStat(bool isAnswerTrue, int userId, int subCategoryId)
+        {
+            var addedState = new Stat()
+            {
+                UserId = userId,
+                Date = DateTime.Now.ToShortDateString(),
+                SubCategoryId = subCategoryId
+            };
+
+            if (isAnswerTrue)
+                addedState.TrueCount = 1;
+
+            else addedState.FalseCount = 1;
+
+            return addedState;
+        }
+
         [HttpPost]
         public IActionResult Exam([FromBody] Answer answer)
         {
@@ -90,17 +107,8 @@ namespace QuestionAnswer.WebUI.Controllers
                     _statService.Update(isDateExist);
                 }
                 else
-                {
-                    _statService.Add(new Stat
-                    {
-                        UserId = userId,
-                        TrueCount = 1,
-                        SubCategoryId = getQuestion.SubCategoryId,
-                        Date = DateTime.Now.ToShortDateString()
-                    });
-                }
+                    _statService.Add(NewStat(getByQuestionId.IsAnswerTrue, userId, subCategoryId));
             }
-
             else
             {
                 if (isDateExist != null)
@@ -109,17 +117,8 @@ namespace QuestionAnswer.WebUI.Controllers
                     _statService.Update(isDateExist);
                 }
                 else
-                {
-                    _statService.Add(new Stat
-                    {
-                        UserId = userId,
-                        FalseCount = 1,
-                        SubCategoryId = getQuestion.SubCategoryId,
-                        Date = DateTime.Now.ToShortDateString()
-                    });
-                }
+                    _statService.Add(NewStat(getByQuestionId.IsAnswerTrue, userId, subCategoryId));
             }
-
             var dailyTestQuestionNo = 50;
             var dailyAnswerSum = _statService.SumDailyAnswer(userId);
 

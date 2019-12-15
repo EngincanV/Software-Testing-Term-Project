@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model StatViewModel
+<style>
+    .chart {
+        width: 100%;
+        min-height: 450px;
+    }
+</style>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div class="container">
+    <div class="card" style="width: 100%">
+        <div class="card-header font-weight-bold" data-toggle="collapse" href="#collapseBody">
+            Tarihe Göre Not Görüntüle
+        </div>
+        <div class="collapse col-12 d-flex justify-content-center" id="collapseBody">
+            <div id="columnchart_values" class="col-8"></div>
+            <div class="card-body col-4">
+                <form asp-action="Index" asp-controller="Stats">
+                    <div class="form-group">
+                        <select class="form-control" asp-items="@Model.GetAllDates" id="chooseDate">
+                            <option id="disabledOption">Tarih seçiniz...</option>
+                        </select>
+                        <br />
+                        <p id="showMessage" class="text-muted">Notunuzu öğrenmek için lütfen görüntülemek istediğiniz tarihi seçin.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="~/js/site.js"></script>
+
+
