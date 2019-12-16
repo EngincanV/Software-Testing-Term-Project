@@ -79,5 +79,41 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         {
             return _context.Stats.Where(p => p.Date == date && p.UserId == userId).Sum(p => p.TrueCount);
         }
+
+        private List<int> TrueAnswerCount(int userId, string date)
+        {
+            var query = from sub in _context.SubCategories
+                        join stat in _context.Stats on sub.Id equals stat.SubCategoryId
+                        where stat.UserId == userId && stat.Date == date
+                        group stat by stat.SubCategoryId into g
+                        select g.Sum(stat => stat.TrueCount) * 100;
+            var listed = query.ToList();
+            return listed;
+        } 
+
+        private List<int> TotalAnswerCount(int userId, string date)
+        {
+            var query = from sub in _context.SubCategories
+                        join stat in _context.Stats on sub.Id equals stat.SubCategoryId
+                        where stat.UserId == userId && stat.Date == date
+                        group stat by stat.SubCategoryId into g
+                        select g.Sum(stat => stat.TrueCount + stat.FalseCount);
+            var listed = query.ToList();
+            return listed;
+        }
+
+        public List<int> SuccessRateByCategory(int userId, string date)
+        {
+            var trueAnswerCount = TrueAnswerCount(userId, date);
+            var totalAnswerCount = TotalAnswerCount(userId, date);
+            var successRateList = new List<int>();
+
+            for(int i=0; i < totalAnswerCount.Count; i++)
+            {
+                successRateList.Add(trueAnswerCount[i] / totalAnswerCount[i]);
+            }
+
+            return successRateList;
+        }
     }
 }

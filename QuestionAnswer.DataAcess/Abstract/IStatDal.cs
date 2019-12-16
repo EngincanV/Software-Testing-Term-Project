@@ -11,5 +11,6 @@ namespace QuestionAnswer.DataAccess.Abstract
         int SumDailyFalseAnswer(int userId);
         List<string> GetAllDates(int userId);
         int SumTrueAnswerByDate(string date, int userId);
+        List<int> SuccessRateByCategory(int userId, string date);
     }
 }

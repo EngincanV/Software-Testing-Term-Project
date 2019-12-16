@@ -6,5 +6,6 @@ namespace QuestionAnswer.WebUI.Models
     {
         public SelectList GetAllDates { get; set; }
         public string SelectedDate { get; set; }
+        public string DateForCategory { get; set; }
     }
 }

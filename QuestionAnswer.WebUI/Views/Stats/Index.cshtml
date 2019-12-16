@@ -11,12 +11,14 @@
 </style>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="~/js/site.js"></script>
+
 <div class="container">
     <div class="card" style="width: 100%">
-        <div class="card-header font-weight-bold" data-toggle="collapse" href="#collapseBody">
-            Tarihe Göre Not Görüntüle
+        <div class="card-header font-weight-bold">
+            Tarihe Göre Not Görüntüle <button type="button" class="btn btn-dark float-right" data-toggle="collapse" data-target="#collapseBody" id="accordion1">-</button>
         </div>
-        <div class="collapse col-12 d-flex justify-content-center" id="collapseBody">
+        <div class="collapse col-12 justify-content-center" id="collapseBody" style="display: flex">
             <div id="columnchart_values" class="col-8"></div>
             <div class="card-body col-4">
                 <form asp-action="Index" asp-controller="Stats">
@@ -31,8 +33,28 @@
             </div>
         </div>
     </div>
-
 </div>
-<script type="text/javascript" src="~/js/site.js"></script>
+
+<div class="container">
+    <div class="card" style="width: 100%">
+        <div class="card-header font-weight-bold">
+            Kategorilere Göre Başarım Oranı <button type="button" class="btn btn-dark float-right" data-toggle="collapse" data-target="#collapseBody2" id="accordion2">-</button>
+        </div>
+        <div class="collapse col-12 justify-content-center" id="collapseBody2" style="display: flex">
+            <div id="columnchart_values2" class="col-8"></div>
+            <div class="card-body col-4">
+                <form asp-action="Index" asp-controller="Stats">
+                    <div class="form-group">
+                        <select class="form-control" asp-items="@Model.GetAllDates" id="chooseDateForCategory">
+                            <option id="disabledOption2">Tarih seçiniz...</option>
+                        </select>
+                        <br />
+                        <p id="showMessage2" class="text-muted">Notunuzu öğrenmek için lütfen görüntülemek istediğiniz tarihi seçin.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
