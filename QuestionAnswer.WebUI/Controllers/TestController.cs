@@ -84,6 +84,32 @@ namespace QuestionAnswer.WebUI.Controllers
             return addedState;
         }
 
+        private void StatUpdate(string givenAnswer, string trueContent, UserQuestion userQuestion, Stat dailyStat, int userId, int subCategoryId)
+        {
+            if (givenAnswer == trueContent)
+            {
+                userQuestion.IsAnswerTrue = true;
+                _userQuestionService.Update(userQuestion);
+                if (dailyStat != null)
+                {
+                    dailyStat.TrueCount++;
+                    _statService.Update(dailyStat);
+                }
+                else
+                    _statService.Add(NewStat(userQuestion.IsAnswerTrue, userId, subCategoryId));
+            }
+            else
+            {
+                if (dailyStat != null)
+                {
+                    dailyStat.FalseCount++;
+                    _statService.Update(dailyStat);
+                }
+                else
+                    _statService.Add(NewStat(userQuestion.IsAnswerTrue, userId, subCategoryId));
+            }
+        }
+
         [HttpPost]
         public IActionResult Exam([FromBody] Answer answer)
         {
@@ -96,29 +122,8 @@ namespace QuestionAnswer.WebUI.Controllers
             var isDateExist = _statService.GetByDate(DateTime.Now.ToShortDateString(), subCategoryId);
             getByQuestionId.IsVisited = true;
 
-            if (answer.AnswerContent == getQuestion.TrueContent)
-            {
-                getByQuestionId.IsAnswerTrue = true;
-                _userQuestionService.Update(getByQuestionId);
+            StatUpdate(answer.AnswerContent, getQuestion.TrueContent, getByQuestionId, isDateExist, userId, subCategoryId);
 
-                if (isDateExist != null)
-                {
-                    isDateExist.TrueCount++;
-                    _statService.Update(isDateExist);
-                }
-                else
-                    _statService.Add(NewStat(getByQuestionId.IsAnswerTrue, userId, subCategoryId));
-            }
-            else
-            {
-                if (isDateExist != null)
-                {
-                    isDateExist.FalseCount++;
-                    _statService.Update(isDateExist);
-                }
-                else
-                    _statService.Add(NewStat(getByQuestionId.IsAnswerTrue, userId, subCategoryId));
-            }
             var dailyTestQuestionNo = 50;
             var dailyAnswerSum = _statService.SumDailyAnswer(userId);
 
@@ -149,7 +154,6 @@ namespace QuestionAnswer.WebUI.Controllers
                     QuestionImage = examViewModel.Question.QuestionImage,
                     Id = examViewModel.Question.Id
                 };
-
                 return Json(newQuestionJson);
             }
             else

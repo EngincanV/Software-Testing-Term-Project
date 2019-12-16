@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.WebUI.Models;
 using System;
+using System.Collections.Generic;
 
 namespace QuestionAnswer.WebUI.Controllers
 {
@@ -21,9 +22,17 @@ namespace QuestionAnswer.WebUI.Controllers
         public IActionResult Index()
         {
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
+            var pointOfTrueAnswer = 2;
 
             var statViewModel = new StatViewModel();
             statViewModel.GetAllDates = new SelectList(_statService.GetAllDates(userId));
+            statViewModel.GetLastThreeDay = _statService.GetLastThreeDay(userId);
+            statViewModel.GetLastThreeDayPoint = new List<int>();
+
+            foreach(var lastThreeDay in statViewModel.GetLastThreeDay)
+            {
+                statViewModel.GetLastThreeDayPoint.Add(_statService.SumTrueAnswerByDate(lastThreeDay, userId) * pointOfTrueAnswer);
+            }
 
             return View(statViewModel);
         }
@@ -49,7 +58,6 @@ namespace QuestionAnswer.WebUI.Controllers
 
                 return Json(successDetail);
             }
-
             return Json("");
         }
     }

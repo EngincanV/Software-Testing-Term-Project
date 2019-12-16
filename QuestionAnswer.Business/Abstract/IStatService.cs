@@ -14,5 +14,6 @@ namespace QuestionAnswer.Business.Abstract
         int SumDailyFalseAnswer(int userId);
         int SumTrueAnswerByDate(string date, int userId);
         List<int> SuccessRateByCategory(int userId, string date);
+        List<string> GetLastThreeDay(int userId);
     }
 }

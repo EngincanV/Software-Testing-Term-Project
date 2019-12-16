@@ -2,13 +2,15 @@
     var chooseDate = $("#chooseDate");
     var chooseDateForCategory = $("#chooseDateForCategory");
 
-    $("#accordion1").click(function () {
+    $("#accordion").click(function () {
         $("#collapseBody").toggle();
+    });
+    $("#accordion1").click(function () {
+        $("#collapseBody1").toggle();
     });
     $("#accordion2").click(function () {
         $("#collapseBody2").toggle();
     });
-
     chooseDate.change(function (e) {
         $("#disabledOption").prop("disabled", true);
         $("#showMessage").hide();
@@ -50,11 +52,15 @@
     $(window).resize(function () {
         drawBasic();
         drawChart2();
+        drawChart();
     });
 });
 
 google.charts.load('current', { packages: ['corechart', 'bar'] });
 google.charts.setOnLoadCallback(drawBasic);
+
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
 
 //Tarihe Göre Not Görüntüle
 function drawBasic(countOfTrue) {
@@ -92,14 +98,13 @@ function drawBasic(countOfTrue) {
 function drawChart2(data) {
     var arr = [];
     for (var i = 0; i < data.subCategoryNames.length; i++) {
-        arr[i] = [data.subCategoryNames[i], data.successRate[i], "#1B9E77"] 
+        arr[i] = [data.subCategoryNames[i], data.successRate[i], "#1B9E77"]
     }
 
     var data = google.visualization.arrayToDataTable([
         ["Stats", "Başarı Oranınız", { role: "style" }],
         ...arr
     ]);
-
     var view = new google.visualization.DataView(data);
     view.setColumns([0, 1,
         {
@@ -123,4 +128,31 @@ function drawChart2(data) {
 
     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values2"));
     chart.draw(view, options);
+}
+
+//Son Üç Teste Göre Değişimi Görüntüle
+function drawChart() {
+    var lastDate = document.getElementById("lastDate").value;
+    var secondDate = document.getElementById("secondDate").value;
+    var firstDate = document.getElementById("firstDate").value;
+    var lastDatePoint = document.getElementById("lastDatePoint").value;
+    var secondDatePoint = document.getElementById("secondDatePoint").value;
+    var firstDatePoint = document.getElementById("firstDatePoint").value;
+
+    var data = google.visualization.arrayToDataTable([
+        ['Tarih', 'Not'],
+        [firstDate, parseInt(firstDatePoint)],
+        [secondDate, parseInt(secondDatePoint)],
+        [lastDate, parseInt(lastDatePoint)]
+    ]);
+
+    var options = {
+        title: 'Son Üç Test Sonuçları',
+        hAxis: { title: 'Son Üç Test Tarihi', titleTextStyle: { color: '#333' } },
+        height: 400,
+        vAxis: { minValue: 0 }
+    };
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
 }

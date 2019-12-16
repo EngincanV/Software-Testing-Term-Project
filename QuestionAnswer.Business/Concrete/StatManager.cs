@@ -29,6 +29,11 @@ namespace QuestionAnswer.Business.Concrete
             return _statDal.GetByDate(date, subCategoryId);
         }
 
+        public List<string> GetLastThreeDay(int userId)
+        {
+            return _statDal.GetLastThreeDay(userId);
+        }
+
         public List<int> SuccessRateByCategory(int userId, string date)
         {
             return _statDal.SuccessRateByCategory(userId, date);

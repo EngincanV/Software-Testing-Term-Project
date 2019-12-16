@@ -115,5 +115,16 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
 
             return successRateList;
         }
+
+        public List<string> GetLastThreeDay(int userId)
+        {
+            return _context.Stats
+                .Where(p => p.UserId == userId)
+                .OrderByDescending(p => p.Date)
+                .Select(p => p.Date)
+                .Distinct()
+                .Take(3)
+                .ToList();
+        }
     }
 }
