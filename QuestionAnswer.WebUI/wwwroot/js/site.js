@@ -1,16 +1,34 @@
-﻿$(document).ready(function () {
+﻿document.getElementById("accordion").onclick = function () {
+    var x = document.getElementById("collapseBody");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+};
+
+document.getElementById("accordion1").onclick = function () {
+    var x = document.getElementById("collapseBody1");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+};
+
+document.getElementById("accordion2").onclick = function () {
+    var x = document.getElementById("collapseBody2");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+};
+
+$(document).ready(function () {
     var chooseDate = $("#chooseDate");
     var chooseDateForCategory = $("#chooseDateForCategory");
 
-    $("#accordion").click(function () {
-        $("#collapseBody").toggle();
-    });
-    $("#accordion1").click(function () {
-        $("#collapseBody1").toggle();
-    });
-    $("#accordion2").click(function () {
-        $("#collapseBody2").toggle();
-    });
     chooseDate.change(function (e) {
         $("#disabledOption").prop("disabled", true);
         $("#showMessage").hide();

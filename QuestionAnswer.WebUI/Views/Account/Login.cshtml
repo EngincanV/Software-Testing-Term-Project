@@ -3,35 +3,47 @@
     ViewData["Title"] = "Login";
 }
 @model QuestionAnswer.Entities.Concrete.User
-<form asp-action="Login" method="post" class="text-center border border-light p-5 m-5">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <p class="h4 mb-4">Giriş Yap</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-5">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <br />
+                    <h5 class="card-title text-center">Giriş Yap</h5>
+                    <form asp-action="Login" method="post" class="form-signin">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-label-group">
+                            <input asp-for="Username" type="text" id="inputEmail" class="form-control" placeholder="Kullanıcı Adı..." required autofocus>
+                            <label for="inputEmail">Kullanıcı Adı</label>
+                        </div>
 
-    <input asp-for="Username" type="text" id="defaultLoginFormUsername" class="form-control mb-4" placeholder="Kullanıcı Adı...">
-    <span asp-validation-for="Username" class="text-danger"></span>
-    <input asp-for="Password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Şifre...">
-    <span asp-validation-for="Password" class="text-danger"></span>
-
-    <div class="d-flex justify-content-around">
-        <div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Beni Hatırla</label>
+                        <div class="form-label-group">
+                            <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Şifre..." required />
+                            <label for="inputPassword">Şifre</label>
+                        </div>
+                        <br />
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Şifreyi Hatırla</label>
+                        </div>
+                        <br />
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Giriş</button>
+                        @if (ViewBag.emptyFields != null)
+                        {
+                            <br />
+                            <div class="alert alert-danger text-center" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">
+                                @ViewBag.emptyFields
+                            </div>
+                        }
+                        else
+                        {
+                        }
+                    </form>
+                </div>
             </div>
         </div>
-        <div>
-            <a href="#">Şifrenizi mi unuttunuz?</a>
-        </div>
     </div>
-
-    <button class="btn btn-info btn-block my-4" type="submit">Giriş</button>
-    @if (ViewBag.emptyFields != null)
-    {
-        <div class="alert alert-danger">
-            @ViewBag.emptyFields
-        </div>
-    }
-    else
-    {
-    }
-</form>
+</div>
+<script>
+    document.body.classList.add("home-page");
+</script>
