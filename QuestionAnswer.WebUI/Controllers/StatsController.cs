@@ -53,7 +53,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 var successDetail = new SuccessDetailView()
                 {
                     SubCategoryNames = _subCategoryService.GetSubCategoriesByName(),
-                    SuccessRate = _statService.SuccessRateByCategory(userId, DateTime.Now.ToShortDateString())
+                    SuccessRate = _statService.SuccessRateByCategory(userId, statView.DateForCategory)
                 };
 
                 return Json(successDetail);

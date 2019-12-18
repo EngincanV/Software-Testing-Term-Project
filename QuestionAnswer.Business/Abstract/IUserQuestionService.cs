@@ -5,7 +5,7 @@ namespace QuestionAnswer.Business.Abstract
 {
     public interface IUserQuestionService
     {
-        List<UserQuestion> GetByUserId(int userId);
+        List<UserQuestion> GetByUserId(int userId, int takeRecord);
         UserQuestion GetByQuestionId(int questionId, int userId);
         void Update(UserQuestion userQuestion);
         void Add(UserQuestion entity);

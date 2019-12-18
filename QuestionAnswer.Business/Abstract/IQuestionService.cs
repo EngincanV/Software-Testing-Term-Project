@@ -10,5 +10,6 @@ namespace QuestionAnswer.Business.Abstract
         void Update(Question entity);
         void Add(Question entity);
         int FindIdByQuestionImage(string questionImage);
+        int GetSubCategoryIdById(int id);
     }
 }

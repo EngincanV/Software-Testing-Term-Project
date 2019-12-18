@@ -49,5 +49,10 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         {
             return _context.Questions.FirstOrDefault(p => p.QuestionImage == questionImage).Id;
         }
+
+        public int GetSubCategoryIdById(int id)
+        {
+            return _context.Questions.FirstOrDefault(p => p.Id == id).SubCategoryId;
+        }
     }
 }

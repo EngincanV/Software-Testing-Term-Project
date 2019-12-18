@@ -8,6 +8,12 @@
         width: 100%;
         min-height: 450px;
     }
+    footer {
+        border-top: 1px solid gray;
+    }
+    footer .container {
+        color: black !important;
+    }
 </style>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -75,4 +81,3 @@
 <input type="hidden" id="lastDatePoint" value="@Model.GetLastThreeDayPoint[0]" />
 <input type="hidden" id="secondDatePoint" value="@Model.GetLastThreeDayPoint[1]" />
 <input type="hidden" id="firstDatePoint" value="@Model.GetLastThreeDayPoint[2]" />
-

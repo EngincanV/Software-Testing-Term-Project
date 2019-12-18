@@ -3,6 +3,15 @@
     ViewData["Title"] = "Exam";
 }
 @model ExamViewModel
+<style>
+    footer {
+        border-top: 1px solid gray;
+    }
+
+        footer .container {
+            color: black !important;
+        }
+</style>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -35,6 +44,8 @@
                 if (secondCounter === 0 && minuteCounter === 0) {
                     clearTimeout();
                     clearInterval();
+                    window.location.href = "/Test/ExamResult";
+
                 }
             }, 1000);
         }, 1000);

@@ -38,5 +38,10 @@ namespace QuestionAnswer.Business.Concrete
         {
             return _questionDal.FindIdByQuestionImage(questionImage);
         }
+
+        public int GetSubCategoryIdById(int id)
+        {
+            return _questionDal.GetSubCategoryIdById(id);
+        }
     }
 }

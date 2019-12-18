@@ -46,7 +46,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 AnswerContent = new Answer()
             };
 
-            var getUserQuestion = _userQuestionService.GetByUserId(userId);
+            var getUserQuestion = _userQuestionService.GetByUserId(userId, dailyTestQuestionNo);
 
             foreach (var userQuestion in getUserQuestion)
             {
@@ -130,7 +130,7 @@ namespace QuestionAnswer.WebUI.Controllers
             if (dailyAnswerSum == dailyTestQuestionNo)
                 return Json("testResult");
 
-            var getUserQuestion = _userQuestionService.GetByUserId(userId);
+            var getUserQuestion = _userQuestionService.GetByUserId(userId, dailyTestQuestionNo);
             var examViewModel = new ExamViewModel();
 
             foreach (var userQuestion in getUserQuestion)
@@ -162,7 +162,26 @@ namespace QuestionAnswer.WebUI.Controllers
 
         public IActionResult ExamResult()
         {
+            var dailyQuestionNo = 50;
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
+            var sumDailyTrueAnswer = _statService.SumDailyTrueAnswer(userId);
+            var sumDailyFalseAnswer = _statService.SumDailyFalseAnswer(userId);
+
+            var emptyAnswers = dailyQuestionNo - sumDailyTrueAnswer - sumDailyFalseAnswer;
+            var getUserQuestion = _userQuestionService.GetByUserId(userId, emptyAnswers);
+
+            foreach (var userQuestion in getUserQuestion)
+            {
+                var subCategoryId = _service.GetSubCategoryIdById(userQuestion.QuestionId);
+                var isDateExist = _statService.GetByDate(DateTime.Now.ToShortDateString(), subCategoryId);
+                if (isDateExist != null)
+                {
+                    isDateExist.FalseCount++;
+                    _statService.Update(isDateExist);
+                }
+                else
+                    _statService.Add(new Stat() { FalseCount = 1, Date = DateTime.Now.ToShortDateString(), SubCategoryId = subCategoryId, UserId = userId });
+            }
 
             ViewData["trueAnswerCount"] = _statService.SumDailyTrueAnswer(userId);
             ViewData["falseAnswerCount"] = _statService.SumDailyFalseAnswer(userId);

@@ -15,9 +15,9 @@ namespace QuestionAnswer.Business.Concrete
             _userQuestionDal = userQuestionDal;
         }
 
-        public List<UserQuestion> GetByUserId(int userId)
+        public List<UserQuestion> GetByUserId(int userId, int takeRecord)
         {
-            return _userQuestionDal.GetByUserId(userId);
+            return _userQuestionDal.GetByUserId(userId, takeRecord);
         }
 
         public UserQuestion GetByQuestionId(int questionId, int userId)

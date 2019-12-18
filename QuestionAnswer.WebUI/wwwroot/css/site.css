@@ -117,14 +117,88 @@ ul.select {
     height: 50px;
     width: 50px;
 }
+
 @media only screen and (max-width: 1150px) {
     .ina-vitamininfo-content {
         float: right;
         font-family: OpenSans;
-        font-size: 13px;
+        font-size: 13px !important;
         color: #333333;
         width: 71% !important;
         min-height: 140px !important;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .ina-vitamininfo-content {
+        font-size: 1.4vw !important;
+    }
+
+        .ina-vitamininfo-content h4 {
+            font-size: 15px !important;
+        }
+        .desc {
+            font-size: 1.4vw !important;
+        }
+        .block h3 {
+            font-size: 3vw !important;
+        }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .ina-vitamininfo-content {
+        font-size: 10px !important;
+        text-align: center !important;
+    }
+        .ina-vitamininfo-content h4 {
+            font-size: 15px !important;
+            text-align: center !important;
+        }
+    .desc {
+        font-size: 1.4vw !important;
+    }
+
+    .block h3 {
+        font-size: 3vw !important;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .ina-vitamininfo-content {
+        font-size: 1.4vw !important;
+    }
+        .ina-vitamininfo-content h4 {
+            font-size: 15px !important;
+        }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .ina-vitamininfo-content {
+        font-size: 1.4vw !important;
+    }
+        .ina-vitamininfo-content h4 {
+            font-size: 15px !important;
+        }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .ina-vitamininfo-content {
+        font-size: 13px !important;
+    }
+        .ina-vitamininfo-content h4 {
+            font-size: 15px !important;
+        }
+    .desc {
+        font-size: 1vw !important;
+    }
+
+    .block h3 {
+        font-size: 2.2vw !important;
     }
 }
 
@@ -137,6 +211,7 @@ ul.select {
     line-height: 20px;
     z-index: 1000000;
 }
+
 ul .nav-item .nav-link:hover {
     border-bottom: 2px solid;
     border-color: blueviolet;
@@ -148,10 +223,10 @@ ul .nav-item .nav-link:hover {
     --input-padding-y: .75rem;
 }
 
-body {
+/*body {
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);
-}
+}*/
 
 .card-signin {
     border: 0;

@@ -7,6 +7,12 @@
     .custom-file-label::after {
         content: "Fotoğrafı Seçiniz" !important;
     }
+    footer {
+        border-top: 1px solid gray;
+    }
+    footer .container {
+        color: black !important;
+    }
 </style>
 <div class="container col-8">
         @if (ViewData["error"] != null)
@@ -26,9 +32,9 @@
                         <label class="custom-file-label" for="customFile">Soru Resimini Seçiniz...</label>
                     </div>
                 </div>
-
+                <br />
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">
                     Kategori Ekle
                 </button>
 
@@ -62,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
                             </div>
                         </div>
                     </div>
@@ -74,21 +80,21 @@
                 </div>
                 <div class="form-group">
                     <label>B şıkkı :</label>
-                    <input required="required" asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
+                    <input required="required" asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>C şıkkı :</label>
-                    <input required="required" asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
+                    <input required="required" asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>D şıkkı :</label>
-                    <input required="required" asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
+                    <input required="required" asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
                 </div>
                 <div class="form-group">
                     <label>Doğru Cevap :</label>
-                    <input required="required" asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
+                    <input required="required" asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
                 </div>
-                <button type="submit" class="btn btn-success my-4 btn-block">Kaydet</button>
+                <button type="submit" class="btn btn-success my-4 btn-block" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">Kaydet</button>
             </form>
         }
     </div>
