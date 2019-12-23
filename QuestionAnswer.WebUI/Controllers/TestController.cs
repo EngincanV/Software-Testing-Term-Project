@@ -33,12 +33,30 @@ namespace QuestionAnswer.WebUI.Controllers
             }
         }
 
+        private void SolvedQuestionUpdate(int userId)
+        {
+            var getQuestionCount = _service.GetQuestionCountBySubCategoryId(userId);
+            var getCategoryCount = _service.GetCategoryCount();
+
+            for(int i=0; i < getQuestionCount.Count; i++)
+            {
+                if (getQuestionCount[i] == getCategoryCount[i])
+                {
+                    var questionId = _service.GetQuestionBySubCategoryId(userId, i+1).Id;
+                    var getQuestion = _userQuestionService.GetByQuestionId(questionId, userId);
+                    getQuestion.IsAnswerTrue = false;
+                    _userQuestionService.Update(getQuestion);
+                }
+            }
+        }
+
         public IActionResult Exam()
         {
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
             var dailyTestQuestionNo = 50;
             var dailyAnswerSum = _statService.SumDailyAnswer(userId);
 
+            SolvedQuestionUpdate(userId);
             VisitedQuestions(userId);
 
             var examViewModel = new ExamViewModel()

@@ -54,5 +54,34 @@ namespace QuestionAnswer.DataAccess.Concrete.Entity_Framework
         {
             return _context.Questions.FirstOrDefault(p => p.Id == id).SubCategoryId;
         }
+
+        public List<int> GetQuestionCountBySubCategoryId(int userId)
+        {
+            var getQuestionCount = (from q in _context.Questions
+                                   join uq in _context.UserQuestions on q.Id equals uq.QuestionId
+                                   join u in _context.Users on uq.UserId equals u.Id
+                                   where uq.IsAnswerTrue == true && u.Id == userId
+                                   group q by q.SubCategoryId into getQuestion
+                                   select getQuestion.Count()).ToList();
+            return getQuestionCount;
+        }
+
+        public List<int> GetCategoryCount()
+        {
+            var getCategoryCount = (from q in _context.Questions
+                                    group q by q.SubCategoryId into getQuestion
+                                    select getQuestion.Count()).ToList();
+
+            return getCategoryCount;
+        }
+        public Question GetQuestionBySubCategoryId(int userId, int subCategoryId)
+        {
+            var getQuestion = (from uq in _context.UserQuestions
+                               join q in _context.Questions on uq.QuestionId equals q.Id
+                               join u in _context.Users on uq.UserId equals u.Id
+                               where q.SubCategoryId == subCategoryId && u.Id == userId
+                               select q).FirstOrDefault();
+            return getQuestion;
+        }
     }
 }

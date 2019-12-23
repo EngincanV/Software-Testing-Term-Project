@@ -30,9 +30,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     @Html.Partial("_LoginPartial")
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
-                        </li>*@
                         @if ((User.FindFirst(claim => claim.Type == ClaimTypes.Role)?.Value == "Teacher"))
                         {
                             <li class="nav-item">
@@ -62,7 +59,7 @@
 
     <footer class="footer text-warning text-center" id="footer">
         <div class="container">
-            &copy; 2019 - Soru / Cevap @*/ <a c" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik*@</a>
+            &copy; 2019 - Soru / Cevap @*/ <a c" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>*@
         </div>
     </footer>
 

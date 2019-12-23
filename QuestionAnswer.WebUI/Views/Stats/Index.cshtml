@@ -26,8 +26,8 @@
             Tarihe Göre Not Görüntüle <button type="button" class="btn btn-dark float-right" id="accordion">-</button>
         </div>
         <div class="collapse col-12 justify-content-center" id="collapseBody" style="display: flex">
-            <div id="columnchart_values" class="col-8"></div>
-            <div class="card-body col-4">
+            <div id="columnchart_values" class="col-md-8 col-sm-6"></div>
+            <div class="card-body col-md-4 col-sm-2">
                 <form asp-action="Index" asp-controller="Stats">
                     <div class="form-group">
                         <select class="form-control" asp-items="@Model.GetAllDates" id="chooseDate">
@@ -48,8 +48,8 @@
             Kategorilere Göre Başarım Oranı <button type="button" class="btn btn-dark float-right" id="accordion1">-</button>
         </div>
         <div class="collapse col-12 justify-content-center" id="collapseBody1" style="display: flex">
-            <div id="columnchart_values2" class="col-8"></div>
-            <div class="card-body col-4">
+            <div id="columnchart_values2" class="col-md-8 col-sm-6"></div>
+            <div class="card-body col-md-4 col-sm-2">
                 <form asp-action="Index" asp-controller="Stats">
                     <div class="form-group">
                         <select class="form-control" asp-items="@Model.GetAllDates" id="chooseDateForCategory">
@@ -69,15 +69,8 @@
         <div class="card-header font-weight-bold">
             Son Üç Test Başarı Değişim Oranı <button type="button" class="btn btn-dark float-right" id="accordion2">-</button>
         </div>
-        <div class="collapse col-12 justify-content-center" id="collapseBody2" style="display: flex">
-            <div id="chart_div" class="col-12"></div>
+        <div class="collapse col-12 justify-content-center" id="collapseBody2" style="display: flex !important">
+            <div id="chart_div" class="col-md-8 col-sm-6"></div>
         </div>
     </div>
 </div>
-
-<input type="hidden" id="lastDate" value="@Model.GetLastThreeDay[0]" />
-<input type="hidden" id="secondDate" value="@Model.GetLastThreeDay[1]" />
-<input type="hidden" id="firstDate" value="@Model.GetLastThreeDay[2]" />
-<input type="hidden" id="lastDatePoint" value="@Model.GetLastThreeDayPoint[0]" />
-<input type="hidden" id="secondDatePoint" value="@Model.GetLastThreeDayPoint[1]" />
-<input type="hidden" id="firstDatePoint" value="@Model.GetLastThreeDayPoint[2]" />

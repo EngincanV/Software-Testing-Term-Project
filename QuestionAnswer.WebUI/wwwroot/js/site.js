@@ -26,6 +26,21 @@ document.getElementById("accordion2").onclick = function () {
 };
 
 $(document).ready(function () {
+    var jsonData = JSON.stringify({
+        isTrue: "true"
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/Stats/Index",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: jsonData,
+        success: function (data) {
+            drawChart(data);
+        }
+    });
+
     var chooseDate = $("#chooseDate");
     var chooseDateForCategory = $("#chooseDateForCategory");
 
@@ -66,11 +81,10 @@ $(document).ready(function () {
             }
         })
     });
-
     $(window).resize(function () {
+        drawChart();
         drawBasic();
         drawChart2();
-        drawChart();
     });
 });
 
@@ -149,24 +163,20 @@ function drawChart2(data) {
 }
 
 //Son Üç Teste Göre Değişimi Görüntüle
-function drawChart() {
-    var lastDate = document.getElementById("lastDate").value;
-    var secondDate = document.getElementById("secondDate").value;
-    var firstDate = document.getElementById("firstDate").value;
-    var lastDatePoint = document.getElementById("lastDatePoint").value;
-    var secondDatePoint = document.getElementById("secondDatePoint").value;
-    var firstDatePoint = document.getElementById("firstDatePoint").value;
+function drawChart(data) {
+    var arr = [];
+    for (var i = 0; i < data.getLastThreeDay.length; i++) {
+        arr[i] = [data.getLastThreeDay[i], parseInt(data.getLastThreeDayPoint[i])];
+    }
 
     var data = google.visualization.arrayToDataTable([
         ['Tarih', 'Not'],
-        [firstDate, parseInt(firstDatePoint)],
-        [secondDate, parseInt(secondDatePoint)],
-        [lastDate, parseInt(lastDatePoint)]
+        ...arr
     ]);
 
     var options = {
         title: 'Son Üç Test Sonuçları',
-        hAxis: { title: 'Son Üç Test Tarihi', titleTextStyle: { color: '#333' } },
+        hAxis: { title: 'Son Üç Test Tarihi', titleTextStyle: { color: '#1B9E77' } },
         height: 400,
         vAxis: { minValue: 0 }
     };

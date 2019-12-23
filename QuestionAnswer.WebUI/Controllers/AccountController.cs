@@ -43,7 +43,6 @@ namespace QuestionAnswer.WebUI.Controllers
 
             if (isUserExist != null)
             {
-                //create the identity for the user
                 identity = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, isUserExist.Username),

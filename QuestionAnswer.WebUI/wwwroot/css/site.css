@@ -223,11 +223,6 @@ ul .nav-item .nav-link:hover {
     --input-padding-y: .75rem;
 }
 
-/*body {
-    background: #007bff;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
-}*/
-
 .card-signin {
     border: 0;
     border-radius: 1rem;

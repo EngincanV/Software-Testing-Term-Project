@@ -10,5 +10,6 @@ namespace QuestionAnswer.WebUI.Models
         public string DateForCategory { get; set; }
         public List<string> GetLastThreeDay { get; set; }
         public List<int> GetLastThreeDayPoint { get; set; }
+        public string IsTrue { get; set; }
     }
 }

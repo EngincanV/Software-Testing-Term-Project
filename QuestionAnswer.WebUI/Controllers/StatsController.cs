@@ -22,17 +22,9 @@ namespace QuestionAnswer.WebUI.Controllers
         public IActionResult Index()
         {
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
-            var pointOfTrueAnswer = 2;
 
             var statViewModel = new StatViewModel();
             statViewModel.GetAllDates = new SelectList(_statService.GetAllDates(userId));
-            statViewModel.GetLastThreeDay = _statService.GetLastThreeDay(userId);
-            statViewModel.GetLastThreeDayPoint = new List<int>();
-
-            foreach(var lastThreeDay in statViewModel.GetLastThreeDay)
-            {
-                statViewModel.GetLastThreeDayPoint.Add(_statService.SumTrueAnswerByDate(lastThreeDay, userId) * pointOfTrueAnswer);
-            }
 
             return View(statViewModel);
         }
@@ -48,7 +40,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 return Json(trueCount);
             }
 
-            else if(!string.IsNullOrWhiteSpace(statView.DateForCategory))
+            else if (!string.IsNullOrWhiteSpace(statView.DateForCategory))
             {
                 var successDetail = new SuccessDetailView()
                 {
@@ -57,6 +49,19 @@ namespace QuestionAnswer.WebUI.Controllers
                 };
 
                 return Json(successDetail);
+            }
+            else if(statView.IsTrue == "true")
+            {
+                var pointOfTrueAnswer = 2;
+                var statViewModel = new StatViewModel();
+                statViewModel.GetLastThreeDay = _statService.GetLastThreeDay(userId);
+                statViewModel.GetLastThreeDayPoint = new List<int>();
+
+                foreach (var lastThreeDay in statViewModel.GetLastThreeDay)
+                {
+                    statViewModel.GetLastThreeDayPoint.Add(_statService.SumTrueAnswerByDate(lastThreeDay, userId) * pointOfTrueAnswer);
+                }
+                return Json(statViewModel);
             }
             return Json("");
         }
