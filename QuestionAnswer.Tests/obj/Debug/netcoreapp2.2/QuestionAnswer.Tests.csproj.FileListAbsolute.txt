@@ -1,0 +1,14 @@
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\QuestionAnswer.Tests.deps.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\QuestionAnswer.Tests.runtimeconfig.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\QuestionAnswer.Tests.runtimeconfig.dev.json
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\QuestionAnswer.Tests.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\bin\Debug\netcoreapp2.2\QuestionAnswer.Tests.pdb
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.csprojAssemblyReference.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.csproj.CoreCompileInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.AssemblyInfoInputs.cache
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.AssemblyInfo.cs
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.dll
+C:\Users\engin\OneDrive\Masaüstü\QuestionAnswer\QuestionAnswer.Tests\obj\Debug\netcoreapp2.2\QuestionAnswer.Tests.pdb
