@@ -33,6 +33,8 @@ namespace QuestionAnswer.WebUI.Controllers
             }
         }
 
+        //if all questions of specific categories solved 
+        //make one of them false and ask it again
         private void SolvedQuestionUpdate(int userId)
         {
             var getQuestionCount = _service.GetQuestionCountBySubCategoryId(userId);
@@ -178,7 +180,7 @@ namespace QuestionAnswer.WebUI.Controllers
                 return Json("");
         }
 
-        public IActionResult ExamResult()
+        public IActionResult ExamResult() //end of the exam display this view
         {
             var dailyQuestionNo = 50;
             var userId = _userService.FindUserByName(User.Identity.Name).Id;
@@ -203,7 +205,6 @@ namespace QuestionAnswer.WebUI.Controllers
 
             ViewData["trueAnswerCount"] = _statService.SumDailyTrueAnswer(userId);
             ViewData["falseAnswerCount"] = _statService.SumDailyFalseAnswer(userId);
-
             return View();
         }
     }

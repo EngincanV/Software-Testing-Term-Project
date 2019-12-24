@@ -7,97 +7,103 @@
     .custom-file-label::after {
         content: "Fotoğrafı Seçiniz" !important;
     }
+
     footer {
         border-top: 1px solid gray;
     }
-    footer .container {
-        color: black !important;
-    }
+
+        footer .container {
+            color: black !important;
+        }
 </style>
 <div class="container col-8">
-        @if (ViewData["error"] != null)
-        {
-            <div class="alert alert-danger"></div>
-        }
-        else
-        {
-            <br />
-            <h2 class="text-center">Soru Ekle</h2>
-            <br />
-            <form id="submitTheForm" asp-action="Add" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <div class="custom-file">
-                        <input type="file" name="file" class="custom-file-input" id="customFile" required="required">
-                        <label class="custom-file-label" for="customFile">Soru Resimini Seçiniz...</label>
-                    </div>
+    @if (ViewData["error"] != null)
+    {
+        <div class="alert alert-danger"></div>
+    }
+    else
+    {
+        <br />
+        <h2 class="text-center">Soru Ekle</h2>
+        <br />
+        <form id="submitTheForm" asp-action="Add" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="customFile" required="required">
+                    <label class="custom-file-label" for="customFile">Soru Resimini Seçiniz...</label>
                 </div>
-                <br />
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">
-                    Kategori Ekle
-                </button>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">
+                Kategori Ekle
+            </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h5 class="modal-title text-center" id="exampleModalLabel">Kategori Ekle</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+            <br />
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Kategori Ekle</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Kategori Adı: </label>
+                                <input id="doThis" asp-for="Category.CategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz kategoriyi giriniz..." />
                             </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Kategori Adı: </label>
-                                    <input id="doThis" asp-for="Category.CategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz kategoriyi giriniz..." />
-                                </div>
-                                <div class="form-group">
-                                    <label>Alt Kategori Adı: </label>
-                                    <input id="subCategory" asp-for="SubCategory.SubCategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz alt kategoriyi giriniz..." />
-                                </div>
-                                <div class="text-muted text-center"><hr />---- veya -----<hr /></div>
-                                <div class="form-group">
-                                    <label>Kategori Seç: </label>
-                                    <select asp-items="@Model.GetAllCategories" class="form-control" id="chooseCategory"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Alt Kategori Seç: </label>
-                                    <select id="subCategoryList" asp-items="@Model.SubCategories" class="form-control"></select>
-                                </div>
+                            <div class="form-group">
+                                <label>Alt Kategori Adı: </label>
+                                <input id="subCategory" asp-for="SubCategory.SubCategoryName" class="form-control" type="text" placeholder="Eklemek istediğiniz alt kategoriyi giriniz..." />
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                            <div class="text-muted text-center"><hr />---- veya -----<hr /></div>
+                            <div class="form-group">
+                                <label>Kategori Seç: </label>
+                                <select asp-items="@Model.GetAllCategories" class="form-control" id="chooseCategory"></select>
                             </div>
+                            <div class="form-group">
+                                <label>Alt Kategori Seç: </label>
+                                <select id="subCategoryList" asp-items="@Model.SubCategories" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <br />
-                    <label>A şıkkı :</label>
-                    <input required="required" asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">
-                </div>
-                <div class="form-group">
-                    <label>B şıkkı :</label>
-                    <input required="required" asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">
-                </div>
-                <div class="form-group">
-                    <label>C şıkkı :</label>
-                    <input required="required" asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">
-                </div>
-                <div class="form-group">
-                    <label>D şıkkı :</label>
-                    <input required="required" asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">
-                </div>
-                <div class="form-group">
-                    <label>Doğru Cevap :</label>
-                    <input required="required" asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">
-                </div>
-                <button type="submit" class="btn btn-success my-4 btn-block" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">Kaydet</button>
-            </form>
-        }
-    </div>
+            </div>
+            <div class="form-label-group">
+                <input asp-for="Question.FirstContent" type="text" id="inputEmail" class="form-control" placeholder="A şıkkını giriniz..." required autofocus />
+                <label for="inputEmail">A şıkkını giriniz...</label>
+                @*<input required="required" asp-for="Question.FirstContent" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A şıkkını giriniz...">*@
+            </div>
+            <div class="form-label-group">
+                <input asp-for="Question.SecondContent" type="text" id="inputEmail2" class="form-control" placeholder="B şıkkını giriniz..." required autofocus />
+                <label for="inputEmail">B şıkkını giriniz...</label>
+                @*<input required="required" asp-for="Question.SecondContent" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="B şıkkını giriniz...">*@
+            </div>
+            <div class="form-label-group">
+                <input asp-for="Question.ThirdContent" type="text" id="inputEmail3" class="form-control" placeholder="C şıkkını giriniz..." required autofocus />
+                <label for="inputEmail">C şıkkını giriniz...</label>
+                @*<input required="required" asp-for="Question.ThirdContent" type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="C şıkkını giriniz...">*@
+            </div>
+            <div class="form-label-group">
+                <input asp-for="Question.FourthContent" type="text" id="inputEmail4" class="form-control" placeholder="D şıkkını giriniz..." required autofocus />
+                <label for="inputEmail">D şıkkını giriniz...</label>
+                @*<input required="required" asp-for="Question.FourthContent" type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="D şıkkını giriniz...">*@
+            </div>
+            <div class="form-label-group">
+                <input asp-for="Question.TrueContent" type="text" id="inputEmail5" class="form-control" placeholder="Doğru cevabı giriniz..." required autofocus />
+                <label for="inputEmail">Doğru cevabı giriniz...</label>
+                @*<input required="required" asp-for="Question.TrueContent" type="text" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="Doğru Cevabı giriniz...">*@
+            </div>
+            <button type="submit" class="btn btn-success my-4 btn-block" style="font-size: 80%;border-radius: 5rem;letter-spacing: .1rem;font-weight: bold;padding: 1rem;transition: all 0.2s;">Kaydet</button>
+        </form>
+    }
+</div>
 @section Scripts {
     <script>
         $(document).ready(function () {

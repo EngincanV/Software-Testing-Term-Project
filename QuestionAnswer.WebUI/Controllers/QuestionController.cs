@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -58,11 +56,11 @@ namespace QuestionAnswer.WebUI.Controllers
                     bool isEqual = false;
                     foreach (var categoryName in _categoryService.GetCategoriesName())
                     {
-                        if (category.CategoryName == categoryName)
+                        if (category.CategoryName == categoryName) //if category exists dont add it
                             isEqual = true;
                     }
 
-                    if (!isEqual)
+                    if (!isEqual) //if category not exist add a new one
                     {
                         _categoryService.Add(category);
                         subCategory.CategoryId = category.Id;
@@ -78,7 +76,7 @@ namespace QuestionAnswer.WebUI.Controllers
 
                     foreach (var user in _userService.GetAll())
                     {
-                        if(user.Role == "Student")
+                        if(user.Role == "Student") //add questions to user who has student role
                         {
                             _userQuestionService.Add(new UserQuestion
                             {
@@ -97,8 +95,8 @@ namespace QuestionAnswer.WebUI.Controllers
                 GetAllCategories = new SelectList(_categoryService.GetCategoriesName()),
                 SubCategories = new SelectList(_subCategoryService.GetSubCategoriesByName())
             };
-            ViewData["error"] = "Bir hata oluştu tekrar deneyiniz";
 
+            ViewData["error"] = "Bir hata oluştu tekrar deneyiniz";
             return View(questionAddViewModel);
         }
     }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QuestionAnswer.Business.Abstract;
 using QuestionAnswer.WebUI.Models;
-using System;
 using System.Collections.Generic;
 
 namespace QuestionAnswer.WebUI.Controllers

@@ -37,12 +37,13 @@ namespace QuestionAnswer.WebUI.Controllers
                 ViewBag.emptyFields = "Lütfen kullanıcı adı ve şifrenizi boş bırakmayınız..";
                 return View();
             }
-
+            //cookie based authentication
             ClaimsIdentity identity = null;
             var isUserExist = _service.UserExist(user.Username, user.Password);
 
             if (isUserExist != null)
             {
+                //create user identity
                 identity = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, isUserExist.Username),
